@@ -7,7 +7,7 @@ target 'IMBDMovies' do
 
   # Pods for IMBDMovies
   pod 'Alamofire', '~> 4.7'
-  pod 'Argo'
+  pod 'Unbox'
   pod 'SDWebImage', '~> 4.0'
   pod 'ReachabilitySwift'
 
