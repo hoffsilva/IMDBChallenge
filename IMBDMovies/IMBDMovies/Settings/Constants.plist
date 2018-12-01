@@ -2,20 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>api_key_param</key>
+	<string>?api_key=</string>
+	<key>api_key_param_value</key>
+	<string>edacb7eeacf9c2be67d32057dc199a0f</string>
+	<key>page_param</key>
+	<string>&amp;page=</string>
+	<key>language_param</key>
+	<string>&amp;language=</string>
+	<key>language_param_value</key>
+	<string>en-US</string>
 	<key>last_page_number</key>
 	<string>10</string>
 	<key>current_page_number</key>
 	<string>1</string>
-	<key>default_page_number</key>
-	<string>&amp;page=1</string>
-	<key>default_language</key>
-	<string>&amp;language=en-US</string>
 	<key>poster_main_url</key>
 	<string>https://image.tmdb.org/t/p/w1280</string>
 	<key>api_main_url</key>
 	<string>https://api.themoviedb.org/3</string>
-	<key>api_key</key>
-	<string>?api_key=edacb7eeacf9c2be67d32057dc199a0f</string>
 	<key>GET_UPCOMING_MOVIES</key>
 	<string>/movie/upcoming</string>
 	<key>GET_SEARCH_MOVIES</key>

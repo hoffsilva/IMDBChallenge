@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B4E5F4121B231FA00A9850E /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4E5F4021B231FA00A9850E /* ServiceRequest.swift */; };
 		0BA19EB821B1772C00A1A4D1 /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA19EB721B1772C00A1A4D1 /* Dates.swift */; };
 		0BA19EBA21B17F2900A1A4D1 /* Constants.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BA19EB921B17F2900A1A4D1 /* Constants.plist */; };
 		0BA19EBD21B17FD200A1A4D1 /* ConstantsUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA19EBC21B17FD200A1A4D1 /* ConstantsUtil.swift */; };
 		0BA1CB4621B15DC200D14013 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1CB4521B15DC200D14013 /* AppDelegate.swift */; };
-		0BA1CB4821B15DC200D14013 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1CB4721B15DC200D14013 /* ViewController.swift */; };
 		0BA1CB4B21B15DC200D14013 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB4921B15DC200D14013 /* Main.storyboard */; };
 		0BA1CB4D21B15DC200D14013 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB4C21B15DC200D14013 /* Assets.xcassets */; };
 		0BA1CB5021B15DC200D14013 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB4E21B15DC200D14013 /* LaunchScreen.storyboard */; };
 		0BA1CB5B21B15DC200D14013 /* IMBDMoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1CB5A21B15DC200D14013 /* IMBDMoviesTests.swift */; };
 		0BA1CB6621B15DC200D14013 /* IMBDMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1CB6521B15DC200D14013 /* IMBDMoviesUITests.swift */; };
 		0BA1CB7521B161CB00D14013 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1CB7421B161CB00D14013 /* Movie.swift */; };
+		0BD6EE0421B23D9E0078E178 /* UpcomingMoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD6EE0321B23D9E0078E178 /* UpcomingMoviesListViewModel.swift */; };
 		0BF071EF21B16DDB008FC381 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF071EE21B16DDB008FC381 /* Result.swift */; };
 		7842DEC5215CC77DB6BFBB62 /* Pods_IMBDMoviesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269091960ECA86109FF36B5E /* Pods_IMBDMoviesTests.framework */; };
 		7CB5F4EFC4A0E6BE8B9DCFD1 /* Pods_IMBDMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7214DA7403B0F348EA7674 /* Pods_IMBDMovies.framework */; };
@@ -42,12 +43,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B4E5F4021B231FA00A9850E /* ServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
 		0BA19EB721B1772C00A1A4D1 /* Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dates.swift; sourceTree = "<group>"; };
 		0BA19EB921B17F2900A1A4D1 /* Constants.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Constants.plist; sourceTree = "<group>"; };
 		0BA19EBC21B17FD200A1A4D1 /* ConstantsUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsUtil.swift; sourceTree = "<group>"; };
+		0BA19EBF21B1FE5200A1A4D1 /* Constants.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Constants.plist; path = IMBDMovies/Settings/Constants.plist; sourceTree = "<group>"; };
 		0BA1CB4221B15DC200D14013 /* IMBDMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMBDMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BA1CB4521B15DC200D14013 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0BA1CB4721B15DC200D14013 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0BA1CB4A21B15DC200D14013 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0BA1CB4C21B15DC200D14013 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BA1CB4F21B15DC200D14013 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 		0BA1CB6521B15DC200D14013 /* IMBDMoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMBDMoviesUITests.swift; sourceTree = "<group>"; };
 		0BA1CB6721B15DC200D14013 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BA1CB7421B161CB00D14013 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		0BD6EE0321B23D9E0078E178 /* UpcomingMoviesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesListViewModel.swift; sourceTree = "<group>"; };
 		0BF071EE21B16DDB008FC381 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		1029BB503C1F7A7A0EFDF011 /* Pods-IMBDMoviesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMBDMoviesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IMBDMoviesUITests/Pods-IMBDMoviesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		269091960ECA86109FF36B5E /* Pods_IMBDMoviesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMBDMoviesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +102,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B4E5F3F21B231DD00A9850E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0B4E5F4021B231FA00A9850E /* ServiceRequest.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		0BA19EBB21B17F3600A1A4D1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +122,7 @@
 		0BA1CB3921B15DC200D14013 = {
 			isa = PBXGroup;
 			children = (
+				0BA19EBF21B1FE5200A1A4D1 /* Constants.plist */,
 				0BA1CB4421B15DC200D14013 /* IMBDMovies */,
 				0BA1CB5921B15DC200D14013 /* IMBDMoviesTests */,
 				0BA1CB6421B15DC200D14013 /* IMBDMoviesUITests */,
@@ -133,10 +145,11 @@
 		0BA1CB4421B15DC200D14013 /* IMBDMovies */ = {
 			isa = PBXGroup;
 			children = (
+				0BD6EE0221B23D750078E178 /* ViewModel */,
+				0B4E5F3F21B231DD00A9850E /* Network */,
 				0BA19EBB21B17F3600A1A4D1 /* Settings */,
 				0BA1CB7321B161B700D14013 /* Model */,
 				0BA1CB4521B15DC200D14013 /* AppDelegate.swift */,
-				0BA1CB4721B15DC200D14013 /* ViewController.swift */,
 				0BA1CB4921B15DC200D14013 /* Main.storyboard */,
 				0BA1CB4C21B15DC200D14013 /* Assets.xcassets */,
 				0BA1CB4E21B15DC200D14013 /* LaunchScreen.storyboard */,
@@ -171,6 +184,14 @@
 				0BA19EB721B1772C00A1A4D1 /* Dates.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0BD6EE0221B23D750078E178 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0BD6EE0321B23D9E0078E178 /* UpcomingMoviesListViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		30E39CD69848D22DD193126E /* Pods */ = {
@@ -336,15 +357,17 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-IMBDMovies/Pods-IMBDMovies-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/FCAlertView/FCAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyPlistManager/SwiftyPlistManager.framework",
 				"${BUILT_PRODUCTS_DIR}/Unbox/Unbox.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FCAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyPlistManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Unbox.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,7 +436,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BA1CB4821B15DC200D14013 /* ViewController.swift in Sources */,
+				0B4E5F4121B231FA00A9850E /* ServiceRequest.swift in Sources */,
+				0BD6EE0421B23D9E0078E178 /* UpcomingMoviesListViewModel.swift in Sources */,
 				0BA19EB821B1772C00A1A4D1 /* Dates.swift in Sources */,
 				0BA1CB4621B15DC200D14013 /* AppDelegate.swift in Sources */,
 				0BA19EBD21B17FD200A1A4D1 /* ConstantsUtil.swift in Sources */,
@@ -725,7 +749,7 @@
 				0BA1CB6921B15DC200D14013 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		0BA1CB6A21B15DC200D14013 /* Build configuration list for PBXNativeTarget "IMBDMovies" */ = {
 			isa = XCConfigurationList;
@@ -734,7 +758,7 @@
 				0BA1CB6C21B15DC200D14013 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		0BA1CB6D21B15DC200D14013 /* Build configuration list for PBXNativeTarget "IMBDMoviesTests" */ = {
 			isa = XCConfigurationList;
@@ -743,7 +767,7 @@
 				0BA1CB6F21B15DC200D14013 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		0BA1CB7021B15DC200D14013 /* Build configuration list for PBXNativeTarget "IMBDMoviesUITests" */ = {
 			isa = XCConfigurationList;
@@ -752,7 +776,7 @@
 				0BA1CB7221B15DC200D14013 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
