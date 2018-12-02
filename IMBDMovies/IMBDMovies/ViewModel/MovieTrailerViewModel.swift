@@ -25,7 +25,7 @@ class MovieTrailerViewModel {
             do {
                 let resultMovieTrailers : ResultsMovieTrailer = try unbox(dictionary: result as! UnboxableDictionary)
                 self.movieTrailers = resultMovieTrailers.results
-                self.movieTrailerViewModelDelegate.trailersLoaded()
+                //self.movieTrailerViewModelDelegate.trailersLoaded()
             } catch {
                 self.movieTrailerViewModelDelegate.trailersNotLoaded(message: error.localizedDescription)
                 print(error)

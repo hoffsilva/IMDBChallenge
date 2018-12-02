@@ -15,6 +15,7 @@ class DetailMovieTableView: UITableViewController {
     
     
     var upcomingMovieListViewModel: UpcomingMoviesListViewModel!
+    var movieTrailerViewModel = MovieTrailerViewModel()
     var indexPath: IndexPath!
     
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -25,6 +26,7 @@ class DetailMovieTableView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        movieTrailerViewModel.movieTrailerViewModelDelegate = self
         setMovieParameters()
     }
     
@@ -49,5 +51,22 @@ class DetailMovieTableView: UITableViewController {
         overviewLabel.text = upcomingMovieListViewModel.getOverview(fromMovie: indexPath)
         releaseDateLabel.text = upcomingMovieListViewModel.getReleaseDate(fromMovie: indexPath)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination.isKind(of: MovieTrailersCollectionView.self) {
+            (segue.destination as? MovieTrailersCollectionView)?.movieTrailerViewModel.loadTrailers(from: upcomingMovieListViewModel.getMovieId(fromMovie: indexPath))
+        }
+    }
+}
+
+extension DetailMovieTableView: MovieTrailerViewModelDelegate {
+    func trailersLoaded() {
+        print("")
+    }
+    
+    func trailersNotLoaded(message: String) {
+        print("")
+    }
+    
     
 }

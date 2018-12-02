@@ -138,4 +138,8 @@ class UpcomingMoviesListViewModel {
     func getReleaseDate(fromMovie atIndexpath: IndexPath) -> String {
         return unwrapValue(value: getMovie(from: atIndexpath).release_date)
     }
+    
+    func getMovieId(fromMovie atIndexpath: IndexPath) -> Int {
+        return unwrapValue(value: getMovie(from: atIndexpath).id)
+    }
 }

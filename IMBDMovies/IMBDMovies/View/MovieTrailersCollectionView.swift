@@ -16,7 +16,7 @@ class MovieTrailersCollectionView: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieTrailerViewModel.loadTrailers(from: 332562)
+        
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -33,6 +33,11 @@ class MovieTrailersCollectionView: UICollectionViewController {
             else { return UICollectionViewCell() }
         cell.movieTrailerWebView.load(URLRequest(url: youtubeURL))
         return cell
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView.reloadData()
     }
     
 }
