@@ -54,7 +54,7 @@ class UpcomingMoviesListViewModel {
         
         ServiceRequest.fetchData(endPointURL: url) { (result) in
             do {
-                let results: Result = try unbox(dictionary: result)
+                let results: Result = try unbox(dictionary: result as! UnboxableDictionary)
                 
                 guard let currentPageNumber = results.page else {
                     self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: "Could not load movie data.")

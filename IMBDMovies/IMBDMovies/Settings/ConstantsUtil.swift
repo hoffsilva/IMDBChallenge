@@ -131,6 +131,27 @@ struct ConstantsUtil {
                "\(getAdultValue())"
     }
     
+    static func primaryTranslationsURL() -> String {
+        return getApiMainUrl() +
+               getTranslatesPath() +
+               getApiKeyParam() +
+               getApiKeyValue()
+    }
+    
+    static func countriesURL() -> String {
+        return getApiMainUrl() +
+               getCountriesPath() +
+               getApiKeyParam() +
+               getApiKeyValue()
+    }
+    
+    static func languagesURL() -> String {
+        return getApiMainUrl() +
+               getLanguagesPath() +
+               getApiKeyParam() +
+               getApiKeyValue()
+    }
+    
     
     //MARK - Set methods
     
@@ -150,8 +171,8 @@ struct ConstantsUtil {
         set(value: currentPageNumber, into: "current_page_number")
     }
     
-    static func setLanguageValue(langauge: String) {
-        set(value: langauge, into: "language_param_value")
+    static func setLanguageValue(language: String) {
+        set(value: language, into: "language_param_value")
     }
     
     static func setQueryValue(value: String) {

@@ -54,10 +54,7 @@ struct Movie {
          self.overview          = overview
          self.release_date      = release_date
     }
-    
-//    init( ) {
-//        self.init(vote_count: 0, id: 0, video: false, vote_average: 0, title: "", popularity: 0, poster_path: "", original_language: "", original_title: "", genre_ids: [], backdrop_path: "", adult: false, overview: "", release_date: "")
-//    }
+
 }
 
 extension Movie: Unboxable {

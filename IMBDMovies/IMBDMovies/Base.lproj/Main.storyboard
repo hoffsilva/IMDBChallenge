@@ -123,11 +123,40 @@
                     </refreshControl>
                     <connections>
                         <segue destination="UK9-ww-RRU" kind="show" identifier="segueDetailMovie" id="eeJ-iQ-vZt"/>
+                        <segue destination="3Y0-Sb-4Rv" kind="show" id="lK2-cc-KAV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9M-Em-VMM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="160.80000000000001" y="77.811094452773617"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="nCm-jM-jA5">
+            <objects>
+                <tableViewController id="3Y0-Sb-4Rv" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oAr-f5-ZDi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="AKp-uj-l3W">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AKp-uj-l3W" id="wvV-bv-Pm7">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3Y0-Sb-4Rv" id="mbu-Dt-69c"/>
+                            <outlet property="delegate" destination="3Y0-Sb-4Rv" id="CsP-KS-0Mn"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sND-pv-xoV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1438" y="-724"/>
         </scene>
         <!--Detail Movie Table View-->
         <scene sceneID="XYj-dA-PcZ">
@@ -249,7 +278,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCQ-kt-vo1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1196" y="77.361319340329842"/>
+            <point key="canvasLocation" x="1438" y="414"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GmH-On-CV9">
