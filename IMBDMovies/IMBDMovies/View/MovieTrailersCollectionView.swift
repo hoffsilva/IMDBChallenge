@@ -31,6 +31,10 @@ class MovieTrailersCollectionView: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieTrailerCell", for: indexPath) as! MovieTrailerCollectionViewCell
         guard let youtubeURL = URL(string: movieTrailerViewModel.getVideoURL(from: indexPath))
             else { return UICollectionViewCell() }
+        cell.movieTrailerWebView.isOpaque = false
+        cell.movieTrailerWebView.scrollView.isScrollEnabled = false
+        cell.movieTrailerWebView.navigationDelegate = cell
+        cell.movieTrailerWebView.navigationDelegate = cell.self
         cell.movieTrailerWebView.load(URLRequest(url: youtubeURL))
         return cell
     }

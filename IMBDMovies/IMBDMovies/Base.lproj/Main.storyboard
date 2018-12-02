@@ -321,7 +321,7 @@
         <scene sceneID="Tu0-eU-bMY">
             <objects>
                 <collectionViewController id="V2R-cc-I1o" customClass="MovieTrailersCollectionView" customModule="IMBDMovies" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="V68-4n-fBD">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" id="V68-4n-fBD">
                         <rect key="frame" x="0.0" y="0.0" width="290" height="180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -342,18 +342,24 @@
                                         <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XhB-D2-vd3">
                                             <rect key="frame" x="0.0" y="0.0" width="290" height="180"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <wkWebViewConfiguration key="configuration">
+                                                <dataDetectorTypes key="dataDetectorTypes"/>
                                                 <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                                 <wkPreferences key="preferences"/>
                                             </wkWebViewConfiguration>
                                         </wkWebView>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="4YX-9C-M2q">
+                                            <rect key="frame" x="127" y="72" width="37" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <size key="customSize" width="290" height="180"/>
                                 <connections>
-                                    <outlet property="movieTrailerWebView" destination="XhB-D2-vd3" id="Vxc-zU-E3U"/>
+                                    <outlet property="activityIndicator" destination="4YX-9C-M2q" id="i2j-0W-gE9"/>
+                                    <outlet property="movieTrailerWebView" destination="XhB-D2-vd3" id="0Mw-pV-RA1"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
