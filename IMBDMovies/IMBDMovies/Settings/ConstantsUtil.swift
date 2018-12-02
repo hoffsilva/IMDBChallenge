@@ -64,7 +64,7 @@ struct ConstantsUtil {
         return String(getValue(from: "language_param"))
     }
     
-    private static func getLanguageValue() -> String {
+    static func getLanguageValue() -> String {
         return String(getValue(from: "language_param_value"))
     }
     
@@ -102,6 +102,10 @@ struct ConstantsUtil {
     
     private static func getLanguagesPath() -> String {
         return String(getValue(from: "GET_LANGUAGES"))
+    }
+    
+    static func isLanguageChanged() -> Bool {
+        return Bool(getValue(from: "language_changed").isEmpty)
     }
     
     static func upcomingMoviesURL() -> String {
@@ -181,6 +185,10 @@ struct ConstantsUtil {
     
     static func setAdultValue(value: Bool) {
         set(value: value, into: "include_adult_value")
+    }
+    
+    static func setLanguageChanged(value: String) {
+        set(value: value, into: "language_changed")
     }
 
     

@@ -8,14 +8,24 @@
 
 import Foundation
 import UIKit
+import FCAlertView
+
+
 
 class LanguageTableView: UITableViewController {
     
+    var selectedLanguage = IndexPath()
+    
     var languageViewModel = LanguageViewModel()
+    
+    let alertView = FCAlertView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        alertView.delegate = self
         languageViewModel.langaugeViewModelDelegate = self
+        pleaseWait()
+        tableView.isHidden = true
         languageViewModel.getPrimaryTranslations()
     }
     
@@ -27,10 +37,36 @@ class LanguageTableView: UITableViewController {
         return languageViewModel.translations.count
     }
     
-    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "languageCell", for: indexPath) as! LanguageTableViewCell
+        cell.languageLabel.text = languageViewModel.getTranslationName(by: indexPath).uppercased() + " - " + languageViewModel.getTranslationCountry(by: indexPath)
+        if languageViewModel.isSelectedLanguage(by: indexPath) {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+        return cell
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        selectedLanguage = indexPath
+        alertView.blurBackground = true
+        alertView.hideDoneButton = true
+        alertView.makeAlertTypeCaution()
+        alertView.showAlert(withTitle: "Change Language", withSubtitle: "Would You like to alter the app's language?", withCustomImage: nil, withDoneButtonTitle: nil, andButtons: ["YES", "NO"])
+    }
+    
+}
+
+extension LanguageTableView: FCAlertViewDelegate {
+    
+    func fcAlertView(_ alertView: FCAlertView!, clickedButtonIndex index: Int, buttonTitle title: String!) {
+        if title == "YES" {
+            languageViewModel.setDefaulTranslation(by: selectedLanguage)
+            navigationController?.popViewController(animated: true)
+        } else {
+            alertView.dismiss()
+        }
     }
     
 }
@@ -50,7 +86,9 @@ extension LanguageTableView: LangaugeViewModelDelegate {
     }
     
     func didLoadTranslations() {
-        print("")
+        tableView.reloadData()
+        tableView.isHidden = false
+        clearAllNotice()
     }
     
 }

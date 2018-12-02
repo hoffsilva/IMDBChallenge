@@ -22,9 +22,13 @@ class UpcomingMoviesListViewModel {
     
     var tempMoviesList = [Movie]()
     
+    func isLanguangeChanged() -> Bool {
+        return ConstantsUtil.isLanguageChanged()
+    }
     
     func getUpcomingMovies() {
         fetchDataFromTMDB(by: ConstantsUtil.upcomingMoviesURL())
+        ConstantsUtil.setLanguageChanged(value: "*")
     }
     
     func searchMovie(by searchParameter: String) {

@@ -91,9 +91,27 @@ class LanguageViewModel {
         return getTranslation(by: indexPath).name
     }
     
+    func getTranslationCountry(by indexPath: IndexPath) -> String {
+        return getTranslation(by: indexPath).country
+    }
+    
     func setDefaulTranslation(by indexPath: IndexPath) {
         ConstantsUtil.setLanguageValue(language: getTranslation(by: indexPath).code)
+        ConstantsUtil.setLanguageChanged(value: "")
     }
+    
+    func selectedLanguage() -> String {
+        return ConstantsUtil.getLanguageValue()
+    }
+    
+    func isSelectedLanguage(by indexPath: IndexPath) -> Bool {
+        return getTranslation(by: indexPath).code == selectedLanguage()
+    }
+    
+    func isLanguageChanged() -> Bool {
+        return ConstantsUtil.isLanguageChanged()
+    }
+    
     
 }
 

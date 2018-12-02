@@ -26,6 +26,14 @@ class UpcomingMoviesListTableView: UITableViewController {
         upcomingMoviesListViewModel.getUpcomingMovies()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.isHidden = false
+        if upcomingMoviesListViewModel.isLanguangeChanged() {
+            updateMoviesList()
+        }
+    }
+    
 }
 
 
@@ -86,9 +94,16 @@ extension UpcomingMoviesListTableView {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let movieDetailView = segue.destination as! DetailMovieTableView
-        movieDetailView.upcomingMovieListViewModel = upcomingMoviesListViewModel
-        movieDetailView.indexPath = selectedIndex
+        if segue.identifier == "segueDetailMovie" {
+            let movieDetailView = segue.destination as! DetailMovieTableView
+            movieDetailView.upcomingMovieListViewModel = upcomingMoviesListViewModel
+            movieDetailView.indexPath = selectedIndex
+        }
+    }
+    
+    @IBAction func openLanguageTableView() {
+        performSegue(withIdentifier: "segueLanguage", sender: self)
+        tableView.isHidden = true
     }
     
 }
@@ -121,8 +136,6 @@ extension UpcomingMoviesListTableView: UISearchControllerDelegate, UISearchBarDe
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
-    
-    
     
     func didDismissSearchController(_ searchController: UISearchController) {
         if upcomingMoviesListViewModel.moviesList.isEmpty {

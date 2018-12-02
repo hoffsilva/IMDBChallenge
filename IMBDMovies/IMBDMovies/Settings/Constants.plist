@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>language_changed</key>
+	<string></string>
 	<key>include_adult_value</key>
 	<string>false</string>
 	<key>include_adult_param</key>
