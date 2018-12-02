@@ -10,7 +10,9 @@ import Foundation
 import UIKit
 import SDWebImage
 
+
 class DetailMovieTableView: UITableViewController {
+    
     
     var upcomingMovieListViewModel: UpcomingMoviesListViewModel!
     var indexPath: IndexPath!

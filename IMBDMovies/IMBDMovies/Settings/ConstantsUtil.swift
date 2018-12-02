@@ -108,6 +108,17 @@ struct ConstantsUtil {
         return Bool(getValue(from: "language_changed").isEmpty)
     }
     
+    static func hostTrailerURL(from key: String) -> String {
+        return String(getValue(from:"host_trailer_url") + key)
+    }
+    
+    static func movieTrailersURL(from movieID: Int) -> String {
+        return getApiMainUrl() +
+               getValue(from: "GET_MOVIE_TRAILERS").replacingOccurrences(of: "<MOVIE-ID>", with: "\(movieID)", options: .literal, range: nil) +
+               getApiKeyParam() +
+               getApiKeyValue()
+    }
+    
     static func upcomingMoviesURL() -> String {
             return getApiMainUrl() +
                    getUpcomingMoviesPath() +

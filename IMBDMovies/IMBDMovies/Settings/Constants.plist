@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>host_trailer_url</key>
+	<string>https://www.youtube.com/embed/</string>
 	<key>language_changed</key>
 	<string></string>
 	<key>include_adult_value</key>
@@ -40,5 +42,7 @@
 	<string>/configuration/countries</string>
 	<key>GET_LANGUAGES</key>
 	<string>/configuration/languages</string>
+	<key>GET_MOVIE_TRAILERS</key>
+	<string>/movie/&lt;MOVIE-ID&gt;/videos</string>
 </dict>
 </plist>
