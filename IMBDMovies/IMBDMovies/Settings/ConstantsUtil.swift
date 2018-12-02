@@ -40,15 +40,31 @@ struct ConstantsUtil {
         return value
     }
     
-    static func getPageParam() -> String {
+    private static func getQueryParam() -> String {
+        return String(getValue(from: "query_param"))
+    }
+    
+    private static func getQueryValue() -> String {
+        return String(getValue(from: "query_value"))
+    }
+    
+    private static func getAdultParam() -> String {
+        return String(getValue(from: "include_adult_param"))
+    }
+    
+    private static func getAdultValue() -> Bool {
+        return Bool(getValue(from: "include_adult_value")) ?? false
+    }
+    
+    private static func getPageParam() -> String {
         return String(getValue(from: "page_param"))
     }
     
-    static func getLanguageParam() -> String {
+    private static func getLanguageParam() -> String {
         return String(getValue(from: "language_param"))
     }
     
-    static func getLanguageValue() -> String {
+    private static func getLanguageValue() -> String {
         return String(getValue(from: "language_param_value"))
     }
     
@@ -56,36 +72,63 @@ struct ConstantsUtil {
         return String(getValue(from: "poster_main_url"))
     }
     
-    static func getApiMainUrl() -> String {
+    private static func getApiMainUrl() -> String {
         return String(getValue(from: "api_main_url"))
     }
     
-    static func getApiKeyParam() -> String {
+    private static func getApiKeyParam() -> String {
         return String(getValue(from: "api_key_param"))
     }
     
-    static func getApiKeyValue() -> String {
+    private static func getApiKeyValue() -> String {
         return String(getValue(from: "api_key_param_value"))
     }
     
-    static func getUpcomingMoviesPath() -> String {
+    private static func getUpcomingMoviesPath() -> String {
         return String(getValue(from: "GET_UPCOMING_MOVIES"))
     }
     
-    static func getSearchMoviesPath() -> String {
+    private static func getSearchMoviesPath() -> String {
         return String(getValue(from: "GET_SEARCH_MOVIES"))
     }
     
-    static func getTranslatesPath() -> String {
+    private static func getTranslatesPath() -> String {
         return String(getValue(from: "GET_TRANSLATES"))
     }
     
-    static func getCountriesPath() -> String {
+    private static func getCountriesPath() -> String {
         return String(getValue(from: "GET_COUNTRIES"))
     }
     
-    static func getLanguagesPath() -> String {
+    private static func getLanguagesPath() -> String {
         return String(getValue(from: "GET_LANGUAGES"))
+    }
+    
+    static func upcomingMoviesURL() -> String {
+            return getApiMainUrl() +
+                   getUpcomingMoviesPath() +
+                   getApiKeyParam() +
+                   getApiKeyValue() +
+                   getLanguageParam() +
+                   getLanguageValue() +
+                   getPageParam() +
+                   "\(getCurrentPageNumber())"
+    }
+    
+    
+    static func searchMoviesURL() -> String {
+        return getApiMainUrl() +
+               getSearchMoviesPath() +
+               getApiKeyParam() +
+               getApiKeyValue() +
+               getLanguageParam() +
+               getLanguageValue() +
+               getPageParam() +
+               "\(getCurrentPageNumber())" +
+               getQueryParam() +
+               getQueryValue() +
+               getAdultParam() +
+               "\(getAdultValue())"
     }
     
     
@@ -109,6 +152,14 @@ struct ConstantsUtil {
     
     static func setLanguageValue(langauge: String) {
         set(value: langauge, into: "language_param_value")
+    }
+    
+    static func setQueryValue(value: String) {
+        set(value: value, into: "query_value")
+    }
+    
+    static func setAdultValue(value: Bool) {
+        set(value: value, into: "include_adult_value")
     }
 
     

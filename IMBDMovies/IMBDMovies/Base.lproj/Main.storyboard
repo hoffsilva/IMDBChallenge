@@ -9,11 +9,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Upcoming Movies List Table View-->
+        <!--Upcoming Movies-->
         <scene sceneID="ZU4-29-f6F">
             <objects>
                 <tableViewController id="AOE-QN-hl2" customClass="UpcomingMoviesListTableView" customModule="IMBDMovies" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9xt-6c-TGE">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9xt-6c-TGE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -24,11 +24,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="280"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w3k-yH-Odm" id="HDf-1t-LDD">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="279.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2dn-4c-tcK">
-                                            <rect key="frame" x="0.0" y="54" width="375" height="175.5"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2dn-4c-tcK">
+                                            <rect key="frame" x="0.0" y="54" width="375" height="176"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Grinch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="JhS-ln-0mM">
                                             <rect key="frame" x="16" y="11" width="343" height="35"/>
@@ -48,15 +48,34 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DdM-L7-GxR">
+                                            <rect key="frame" x="0.0" y="279" width="375" height="1"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="jol-ay-4Gt"/>
+                                            </constraints>
+                                        </view>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Ia-Nm-4ja">
+                                            <rect key="frame" x="137.5" y="90" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="794-Qu-ULv"/>
+                                                <constraint firstAttribute="height" constant="100" id="XoC-Ni-Mkz"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="DdM-L7-GxR" secondAttribute="trailing" id="7Cd-gX-43p"/>
                                         <constraint firstItem="2dn-4c-tcK" firstAttribute="top" secondItem="HDf-1t-LDD" secondAttribute="top" constant="54" id="7a2-7q-8t7"/>
+                                        <constraint firstItem="3Ia-Nm-4ja" firstAttribute="centerY" secondItem="HDf-1t-LDD" secondAttribute="centerY" id="8Jq-DK-dl4"/>
                                         <constraint firstItem="JhS-ln-0mM" firstAttribute="leading" secondItem="HDf-1t-LDD" secondAttribute="leadingMargin" id="9MN-XB-Iyj"/>
+                                        <constraint firstItem="DdM-L7-GxR" firstAttribute="leading" secondItem="HDf-1t-LDD" secondAttribute="leading" id="FYu-b1-fae"/>
                                         <constraint firstItem="00l-ts-6a5" firstAttribute="trailing" secondItem="HDf-1t-LDD" secondAttribute="trailingMargin" id="Olw-FS-ZVc"/>
+                                        <constraint firstAttribute="bottom" secondItem="DdM-L7-GxR" secondAttribute="bottom" id="PgY-oS-biu"/>
                                         <constraint firstAttribute="trailing" secondItem="2dn-4c-tcK" secondAttribute="trailing" id="VEA-tV-0jJ"/>
                                         <constraint firstItem="0j0-ix-ti3" firstAttribute="leading" secondItem="HDf-1t-LDD" secondAttribute="leadingMargin" id="VTE-5K-fst"/>
                                         <constraint firstItem="00l-ts-6a5" firstAttribute="bottom" secondItem="HDf-1t-LDD" secondAttribute="bottomMargin" id="YDG-Wg-3HT"/>
                                         <constraint firstItem="2dn-4c-tcK" firstAttribute="leading" secondItem="HDf-1t-LDD" secondAttribute="leading" id="chs-7O-Y8J"/>
+                                        <constraint firstItem="3Ia-Nm-4ja" firstAttribute="centerX" secondItem="HDf-1t-LDD" secondAttribute="centerX" id="cn5-lZ-5wQ"/>
                                         <constraint firstAttribute="bottom" secondItem="2dn-4c-tcK" secondAttribute="bottom" constant="50" id="eOh-op-pW1"/>
                                         <constraint firstItem="0j0-ix-ti3" firstAttribute="bottom" secondItem="HDf-1t-LDD" secondAttribute="bottomMargin" id="iLx-R0-MsX"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="JhS-ln-0mM" secondAttribute="trailing" id="j0z-BV-DbJ"/>
@@ -67,6 +86,7 @@
                                 <connections>
                                     <outlet property="movieAverage" destination="00l-ts-6a5" id="BkZ-SP-h4D"/>
                                     <outlet property="movieBackdropPosterImageView" destination="2dn-4c-tcK" id="ak6-h7-eMb"/>
+                                    <outlet property="movieNoPosterImageView" destination="3Ia-Nm-4ja" id="gpa-N8-Ryl"/>
                                     <outlet property="movieReleaseDate" destination="0j0-ix-ti3" id="gr3-2U-Gyi"/>
                                     <outlet property="movieTitle" destination="JhS-ln-0mM" id="St9-ds-6jP"/>
                                 </connections>
@@ -77,21 +97,54 @@
                             <outlet property="delegate" destination="AOE-QN-hl2" id="V1E-rM-42f"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="KNb-4r-EwK"/>
+                    <navigationItem key="navigationItem" title="Upcoming Movies" id="KNb-4r-EwK">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="tY0-LK-Ic6">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EW6-0j-MVm">
+                                <rect key="frame" x="-23" y="-15" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Language">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Ahi-AC-EkW">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle">
+                            <fragment content="zZZZ">
+                                <attributes>
+                                    <color key="NSBackgroundColor" red="0.96078431369999995" green="0.95686274510000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <font key="NSFont" metaFont="smallSystem"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9M-Em-VMM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-85.599999999999994" y="0.44977511244377816"/>
+            <point key="canvasLocation" x="160.80000000000001" y="77.811094452773617"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GmH-On-CV9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OnF-lZ-lQA" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="R9g-rs-UjF">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="R9g-rs-UjF">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="25"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="30"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

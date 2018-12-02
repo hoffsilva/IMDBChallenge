@@ -13,9 +13,14 @@ import SDWebImage
 class UpcomingMoviesListTableView: UITableViewController {
     
     let upcomingMoviesListViewModel = UpcomingMoviesListViewModel()
+    let searchController = UISearchController(searchResultsController: nil)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pleaseWait()
+        configureSearchBar()
+        addRefreshControl()
         upcomingMoviesListViewModel.upcomingMoviesListViewModelDelegate = self
         upcomingMoviesListViewModel.getUpcomingMovies()
     }
@@ -42,29 +47,107 @@ extension UpcomingMoviesListTableView {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieItemCell", for: indexPath) as! UpcomingMovieItemTableViewCell
         cell.movieAverage.text = "\(upcomingMoviesListViewModel.getVoteAvegare(fromMovie: indexPath))"
+        cell.movieBackdropPosterImageView.sd_addActivityIndicator()
         cell.movieBackdropPosterImageView.startAnimating()
+        print(upcomingMoviesListViewModel.getBackdropPoster(fromMovie: indexPath))
         cell.movieBackdropPosterImageView.sd_setImage(with: URL(string: upcomingMoviesListViewModel.getBackdropPoster(fromMovie: indexPath))) { (image, error, cacheType, url) in
             if error == nil {
-                cell.movieBackdropPosterImageView.image = image
+                cell.movieNoPosterImageView.isHidden = true
+                if let unwrappedImage = image {
+                    cell.movieBackdropPosterImageView.image = unwrappedImage
+                }
                 cell.movieBackdropPosterImageView.stopAnimating()
+            } else {
+                cell.movieNoPosterImageView.isHidden = false
+                cell.movieNoPosterImageView.image = #imageLiteral(resourceName: "logo_tmdb")
             }
         }
-        cell.movieReleaseDate.text = ""
+        cell.movieReleaseDate.text = upcomingMoviesListViewModel.getReleaseDate(fromMovie: indexPath)
         cell.movieTitle.text = upcomingMoviesListViewModel.getTitle(fromMovie: indexPath)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let currentPage = ConstantsUtil.getCurrentPageNumber()
+        let lastPage = ConstantsUtil.getLastPageNumber()
+        if indexPath.row == upcomingMoviesListViewModel.moviesList.count-1 {
+            if  currentPage <= lastPage  {
+                pleaseWait()
+                ConstantsUtil.setCurrentPageNumber(currentPageNumber: currentPage + 1)
+                upcomingMoviesListViewModel.getUpcomingMovies()
+            }
+        }
     }
     
 }
 
 extension UpcomingMoviesListTableView: UpcomingMoviesListViewModelDelegate {
     func didLoadMoviesList() {
-        self.tableView.reloadData()
+        tableView.reloadData()
+        tableView.refreshControl?.endRefreshing()
+        clearAllNotice()
     }
     
     func didNotLoadMoviesList(message: String) {
-        print("OOOps")
+        clearAllNotice()
+        tableView.refreshControl?.endRefreshing()
+    }
+    
+    func searchIsActive() {
+        self.tableView.reloadData()
+    }
+}
+
+extension UpcomingMoviesListTableView: UISearchControllerDelegate, UISearchBarDelegate {
+    
+    func configureSearchBar() {
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search movies..."
+        searchController.searchBar.barStyle = .blackTranslucent
+        searchController.searchBar.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        if upcomingMoviesListViewModel.moviesList.isEmpty {
+            updateMoviesList()
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        if upcomingMoviesListViewModel.moviesList.isEmpty {
+            updateMoviesList()
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let isEmpty = searchBar.text?.isEmpty else {
+            return
+        }
+        if !isEmpty {
+            pleaseWait()
+            upcomingMoviesListViewModel.searchMovie(by: searchBar.text!)
+        }
+    }
 }
 
+extension UpcomingMoviesListTableView {
+    
+    @objc
+    func updateMoviesList() {
+        self.pleaseWait()
+        ConstantsUtil.setCurrentPageNumber(currentPageNumber: 1)
+        upcomingMoviesListViewModel.getUpcomingMovies()
+    }
+    
+    func addRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "Updating movies list", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        tableView.refreshControl?.addTarget(self, action: #selector(updateMoviesList), for: .valueChanged)
+    }
+}

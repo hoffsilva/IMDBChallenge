@@ -25,6 +25,9 @@ struct ServiceRequest {
                 }
                 responseJSON(unboxableDictionary)
             }
+        } else {
+            let unboxableDictionary = UnboxableDictionary()
+            responseJSON(unboxableDictionary)
         }
     }
     

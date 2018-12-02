@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>include_adult_value</key>
+	<string>false</string>
+	<key>include_adult_param</key>
+	<string>&amp;include_adult=</string>
+	<key>query_param</key>
+	<string>&amp;query=</string>
+	<key>query_value</key>
+	<string></string>
 	<key>api_key_param</key>
 	<string>?api_key=</string>
 	<key>api_key_param_value</key>
