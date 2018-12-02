@@ -14,6 +14,7 @@ class UpcomingMoviesListTableView: UITableViewController {
     
     let upcomingMoviesListViewModel = UpcomingMoviesListViewModel()
     let searchController = UISearchController(searchResultsController: nil)
+    var selectedIndex: IndexPath!
     
     
     override func viewDidLoad() {
@@ -77,6 +78,17 @@ extension UpcomingMoviesListTableView {
                 upcomingMoviesListViewModel.getUpcomingMovies()
             }
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndex = indexPath
+        performSegue(withIdentifier: "segueDetailMovie", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let movieDetailView = segue.destination as! DetailMovieTableView
+        movieDetailView.upcomingMovieListViewModel = upcomingMoviesListViewModel
+        movieDetailView.indexPath = selectedIndex
     }
     
 }
