@@ -73,6 +73,11 @@ extension LanguageTableView: FCAlertViewDelegate {
 
 extension LanguageTableView: LangaugeViewModelDelegate {
     
+    func didNotLoadLanguages(message: String) {
+        clearAllNotice()
+        noticeOnlyText(message)
+    }
+    
     func didLoadPrimaryTranslations() {
         languageViewModel.getCountries()
     }

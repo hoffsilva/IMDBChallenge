@@ -8,11 +8,15 @@
 import Unbox
 import Foundation
 
+
 protocol UpcomingMoviesListViewModelDelegate {
     func didLoadMoviesList()
     func didNotLoadMoviesList(message: String)
     func searchIsActive()
 }
+
+
+
 
 class UpcomingMoviesListViewModel {
     

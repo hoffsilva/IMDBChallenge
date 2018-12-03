@@ -30,7 +30,6 @@ struct ServiceRequest {
                     return
                 }
                 responseJSON(response.value as? UnboxableDictionary)
-                
             }
         } else {
             responseJSON(nil)

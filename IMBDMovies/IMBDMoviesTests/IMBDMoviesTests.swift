@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import Unbox
+import Alamofire
 @testable import IMBDMovies
 
 class IMBDMoviesTests: XCTestCase {
@@ -15,10 +17,7 @@ class IMBDMoviesTests: XCTestCase {
     var moviesQuantity = 20
 
     override func setUp() {
-        upcomingMoviesListViewModel.upcomingMoviesListViewModelDelegate = self
-        upcomingMoviesListViewModel.getUpcomingMovies()
-        moviesQuantity = upcomingMoviesListViewModel.moviesList.count
-        upcomingMoviesListViewModel.upcomingMoviesListViewModelDelegate?.didLoadMoviesList()
+        
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -26,21 +25,32 @@ class IMBDMoviesTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testPerformance() {
+    func testPerformanceGetUpcomingMovies() {
         self.measure {
-            upcomingMoviesListViewModel.getUpcomingMovies()
+            let exp = expectation(description: "Server fetch")
+            ServiceRequest.fetchData(endPointURL: ConstantsUtil.upcomingMoviesURL(), responseJSON: { (result) in
+                exp.fulfill()
+            })
+            waitForExpectations(timeout: 100000, handler: { (error) in
+                print(error?.localizedDescription ?? "Error")
+            })
         }
     }
     
-    func testGetMovies() {
-        
-        XCTAssertEqual(20, moviesQuantity)
-        testPerformance()
+    func testGetUpcomingMovies() {
+        ServiceRequest.fetchData(endPointURL: ConstantsUtil.upcomingMoviesURL()) { (result) in
+            XCTAssertNotNil(result as! UnboxableDictionary)
+        }
+    }
+    
+    func testConnection() {
+        XCTAssertTrue(Alamofire.NetworkReachabilityManager(host: "www.google.com")?.isReachable ?? false)
     }
 
 }
 
 extension IMBDMoviesTests: UpcomingMoviesListViewModelDelegate {
+    
     func didLoadMoviesList() {
         moviesQuantity = upcomingMoviesListViewModel.moviesList.count
         print(moviesQuantity)

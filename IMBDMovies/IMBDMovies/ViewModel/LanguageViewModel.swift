@@ -14,6 +14,7 @@ protocol LangaugeViewModelDelegate {
     func didLoadLanguages()
     func didLoadCountries()
     func didLoadTranslations()
+    func didNotLoadLanguages(message: String)
 }
 
 class LanguageViewModel {
@@ -28,8 +29,27 @@ class LanguageViewModel {
     
     var translations = [Translation]()
     
+    private func treatResponse(result: Any?) {
+        guard let resultFromApi = result else {
+            self.langaugeViewModelDelegate?.didNotLoadLanguages(message: "The movie database is not available.")
+            return
+        }
+        
+        do {
+            guard let errorResponse = resultFromApi as? UnboxableDictionary else {
+                return
+            }
+            let error: ErrorResponse = try! unbox(dictionary: errorResponse)
+            self.langaugeViewModelDelegate?.didNotLoadLanguages(message: error.status_message)
+            return
+        } catch {}
+    }
+    
     func getPrimaryTranslations() {
         ServiceRequest.fetchData(endPointURL: ConstantsUtil.primaryTranslationsURL()) { (result) in
+            
+            self.treatResponse(result: result)
+            
             self.primaryTranslations = result as! Array
             self.langaugeViewModelDelegate?.didLoadPrimaryTranslations()
         }
@@ -37,6 +57,9 @@ class LanguageViewModel {
     
     func getCountries() {
         ServiceRequest.fetchData(endPointURL: ConstantsUtil.countriesURL()) { (result) in
+            
+           self.treatResponse(result: result)
+            
             do {
                 let countries : [Country] = try unbox(dictionaries: result as! [UnboxableDictionary])
                 self.contries = countries
@@ -49,6 +72,9 @@ class LanguageViewModel {
     
     func getLanguages() {
         ServiceRequest.fetchData(endPointURL: ConstantsUtil.languagesURL()) { (result) in
+            
+            self.treatResponse(result: result)
+            
             do {
                 let languages : [Language] = try unbox(dictionaries: result as! [UnboxableDictionary])
                 self.languages = languages
