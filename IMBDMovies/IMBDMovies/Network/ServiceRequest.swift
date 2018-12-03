@@ -11,7 +11,7 @@ import Alamofire
 import Unbox
 import FCAlertView
 
-typealias obj = (Any) -> Swift.Void
+typealias obj = (Any?) -> Swift.Void
 
 struct ServiceRequest {
     
@@ -20,14 +20,21 @@ struct ServiceRequest {
     static func fetchData(endPointURL: String, responseJSON: @escaping obj) {
         if isConnected {
             Alamofire.request(endPointURL.trimmingCharacters(in: .whitespaces)).responseJSON { (response) in
-                guard let anything = response.result.value else {
+                if let pt = response.value as? Array<String>{
+                    responseJSON(pt)
                     return
                 }
-                responseJSON(anything)
+                
+                if let countries = response.value as? Array<UnboxableDictionary> {
+                    responseJSON(countries)
+                    return
+                }
+                responseJSON(response.value as? UnboxableDictionary)
+                
             }
         } else {
-            let unboxableDictionary = UnboxableDictionary()
-            responseJSON(unboxableDictionary)
+            responseJSON(nil)
+            return
         }
     }
     

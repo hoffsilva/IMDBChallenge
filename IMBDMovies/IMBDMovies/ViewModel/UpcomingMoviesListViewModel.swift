@@ -26,7 +26,7 @@ class UpcomingMoviesListViewModel {
         return ConstantsUtil.isLanguageChanged()
     }
     
-    func getUpcomingMovies() {
+    func  getUpcomingMovies() {
         fetchDataFromTMDB(by: ConstantsUtil.upcomingMoviesURL())
         ConstantsUtil.setLanguageChanged(value: "*")
     }
@@ -57,8 +57,20 @@ class UpcomingMoviesListViewModel {
     private func fetchDataFromTMDB(by url: String) {
         
         ServiceRequest.fetchData(endPointURL: url) { (result) in
+            
+            guard let movieData = result else {
+                self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: "The movie database is not available.")
+                return
+            }
+            
             do {
-                let results: Result = try unbox(dictionary: result as! UnboxableDictionary)
+                let error: ErrorResponse = try unbox(dictionary: movieData as! UnboxableDictionary)
+                self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: error.status_message)
+                return
+            } catch {}
+            
+            do {
+                let results: Result = try unbox(dictionary: movieData as! UnboxableDictionary)
                 
                 guard let currentPageNumber = results.page else {
                     self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: "Could not load movie data.")

@@ -55,6 +55,7 @@ class DetailMovieTableView: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination.isKind(of: MovieTrailersCollectionView.self) {
             (segue.destination as? MovieTrailersCollectionView)?.movieTrailerViewModel.loadTrailers(from: upcomingMovieListViewModel.getMovieId(fromMovie: indexPath))
+            (segue.destination as? MovieTrailersCollectionView)?.movieTrailerViewModel.movieTrailerViewModelDelegate = self
         }
     }
 }

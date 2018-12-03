@@ -22,10 +22,22 @@ class MovieTrailerViewModel {
     
     func loadTrailers(from movieID: Int) {
         ServiceRequest.fetchData(endPointURL: ConstantsUtil.movieTrailersURL(from: movieID)) { (result) in
+            
+            guard let movieTrailer = result else {
+                self.movieTrailerViewModelDelegate.trailersNotLoaded(message: "The movie database is not available.")
+                return
+            }
+            
             do {
-                let resultMovieTrailers : ResultsMovieTrailer = try unbox(dictionary: result as! UnboxableDictionary)
+                let error: ErrorResponse = try unbox(dictionary: movieTrailer as! UnboxableDictionary)
+                self.movieTrailerViewModelDelegate.trailersNotLoaded(message: error.status_message)
+                return
+            } catch {}
+            
+            do {
+                let resultMovieTrailers : ResultsMovieTrailer = try unbox(dictionary: movieTrailer as! UnboxableDictionary)
                 self.movieTrailers = resultMovieTrailers.results
-                //self.movieTrailerViewModelDelegate.trailersLoaded()
+                self.movieTrailerViewModelDelegate.trailersLoaded()
             } catch {
                 self.movieTrailerViewModelDelegate.trailersNotLoaded(message: error.localizedDescription)
                 print(error)

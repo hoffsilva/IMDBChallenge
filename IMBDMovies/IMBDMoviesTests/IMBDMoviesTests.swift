@@ -10,8 +10,15 @@ import XCTest
 @testable import IMBDMovies
 
 class IMBDMoviesTests: XCTestCase {
+    
+    let upcomingMoviesListViewModel = UpcomingMoviesListViewModel()
+    var moviesQuantity = 20
 
     override func setUp() {
+        upcomingMoviesListViewModel.upcomingMoviesListViewModelDelegate = self
+        upcomingMoviesListViewModel.getUpcomingMovies()
+        moviesQuantity = upcomingMoviesListViewModel.moviesList.count
+        upcomingMoviesListViewModel.upcomingMoviesListViewModelDelegate?.didLoadMoviesList()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -19,16 +26,33 @@ class IMBDMoviesTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testGetMovies() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
+    func testPerformance() {
         self.measure {
-            // Put the code you want to measure the time of here.
+            upcomingMoviesListViewModel.getUpcomingMovies()
         }
     }
+    
+    func testGetMovies() {
+        
+        XCTAssertEqual(20, moviesQuantity)
+        testPerformance()
+    }
 
+}
+
+extension IMBDMoviesTests: UpcomingMoviesListViewModelDelegate {
+    func didLoadMoviesList() {
+        moviesQuantity = upcomingMoviesListViewModel.moviesList.count
+        print(moviesQuantity)
+    }
+    
+    func didNotLoadMoviesList(message: String) {
+        
+    }
+    
+    func searchIsActive() {
+        
+    }
+    
+    
 }

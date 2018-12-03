@@ -118,6 +118,7 @@ extension UpcomingMoviesListTableView: UpcomingMoviesListViewModelDelegate {
     func didNotLoadMoviesList(message: String) {
         clearAllNotice()
         tableView.refreshControl?.endRefreshing()
+        noticeOnlyText(message)
     }
     
     func searchIsActive() {
