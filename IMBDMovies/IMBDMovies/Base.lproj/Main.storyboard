@@ -113,6 +113,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Ahi-AC-EkW">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle">
                             <fragment content="zZZZ">
@@ -131,7 +132,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9M-Em-VMM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="160.80000000000001" y="77.811094452773617"/>
+            <point key="canvasLocation" x="110" y="78"/>
         </scene>
         <!--Language Table View-->
         <scene sceneID="nCm-jM-jA5">
@@ -315,7 +316,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCQ-kt-vo1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1437.5999999999999" y="413.79310344827587"/>
+            <point key="canvasLocation" x="1438" y="318"/>
         </scene>
         <!--Movie Trailers Collection View-->
         <scene sceneID="Tu0-eU-bMY">
@@ -344,7 +345,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <wkWebViewConfiguration key="configuration">
-                                                <dataDetectorTypes key="dataDetectorTypes"/>
+                                                <dataDetectorTypes key="dataDetectorTypes" none="YES"/>
                                                 <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                                 <wkPreferences key="preferences"/>
                                             </wkWebViewConfiguration>
@@ -402,19 +403,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nCV-al-SaZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-820" y="78"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="wWT-w3-nRh">
-            <objects>
-                <viewController id="m82-uw-YwV" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="T56-bw-0nG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oa5-LA-CaF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

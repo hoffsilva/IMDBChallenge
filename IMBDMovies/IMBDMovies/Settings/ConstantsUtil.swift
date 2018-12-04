@@ -104,6 +104,10 @@ struct ConstantsUtil {
         return String(getValue(from: "GET_LANGUAGES"))
     }
     
+    static func getHostThemoviedbWeb() -> String {
+        return String(getValue(from: "host_themoviedb_web"))
+    }
+    
     static func isLanguageChanged() -> Bool {
         return Bool(getValue(from: "language_changed").isEmpty)
     }

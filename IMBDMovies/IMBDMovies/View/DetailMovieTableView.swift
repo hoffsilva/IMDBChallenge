@@ -29,6 +29,7 @@ class DetailMovieTableView: UITableViewController {
         super.viewDidLoad()
         movieTrailerViewModel.movieTrailerViewModelDelegate = self
         setMovieParameters()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(shareMovie))
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -59,6 +60,17 @@ class DetailMovieTableView: UITableViewController {
             (segue.destination as? MovieTrailersCollectionView)?.movieTrailerViewModel.movieTrailerViewModelDelegate = self
             collectionViewMovieTrailers = (segue.destination as? MovieTrailersCollectionView)?.collectionView
         }
+    }
+    
+    @objc
+    func shareMovie() {
+        let message:String = " 🍿🥤 🍿🥤 Hello! I liked this movie. Would you like to watch it with me?. 🎟 🎟"
+        let objectsToShare = URL(string: ConstantsUtil.getHostThemoviedbWeb() + "\(upcomingMovieListViewModel.getMovieId(fromMovie: indexPath))")
+        let sharedObjects:[AnyObject] = [objectsToShare as AnyObject, message as AnyObject]
+        let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook,UIActivity.ActivityType.postToTwitter,UIActivity.ActivityType.mail]
+        self.present(activityViewController, animated: true, completion: nil)
     }
 }
 

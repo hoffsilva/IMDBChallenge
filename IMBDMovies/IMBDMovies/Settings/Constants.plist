@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>host_themoviedb_web</key>
+	<string>https://www.themoviedb.org/movie/</string>
 	<key>host_trailer_url</key>
 	<string>https://www.youtube.com/embed/</string>
 	<key>language_changed</key>
