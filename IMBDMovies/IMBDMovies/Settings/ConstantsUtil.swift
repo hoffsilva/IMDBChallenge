@@ -44,7 +44,7 @@ struct ConstantsUtil {
         return String(getValue(from: "query_param"))
     }
     
-    private static func getQueryValue() -> String {
+    static func getQueryValue() -> String {
         return String(getValue(from: "query_value"))
     }
     

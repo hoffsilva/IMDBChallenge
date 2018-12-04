@@ -30,28 +30,44 @@ class LanguageViewModel {
     var translations = [Translation]()
     
     private func treatResponse(result: Any?) {
-        guard let resultFromApi = result else {
+        
+        guard let resultFromApi = result as? UnboxableDictionary else {
             self.langaugeViewModelDelegate?.didNotLoadLanguages(message: "The movie database is not available.")
             return
         }
         
         do {
-            guard let errorResponse = resultFromApi as? UnboxableDictionary else {
-                return
-            }
-            let error: ErrorResponse = try! unbox(dictionary: errorResponse)
+            let error: ErrorResponse = try unbox(dictionary: resultFromApi)
             self.langaugeViewModelDelegate?.didNotLoadLanguages(message: error.status_message)
             return
-        } catch {}
+        } catch {
+            print(error.localizedDescription)
+            return
+        }
     }
     
     func getPrimaryTranslations() {
         ServiceRequest.fetchData(endPointURL: ConstantsUtil.primaryTranslationsURL()) { (result) in
+        
+            if let resultFromApi = result as? UnboxableDictionary {
+                
+                do {
+                    let error: ErrorResponse = try unbox(dictionary: resultFromApi)
+                    self.langaugeViewModelDelegate?.didNotLoadLanguages(message: error.status_message)
+                    return
+                } catch {
+                    print(error.localizedDescription)
+                    return
+                }
+        
+            } else if let array = result as? Array<String> {
+                self.primaryTranslations = array
+                self.langaugeViewModelDelegate?.didLoadPrimaryTranslations()
+            } else {
+                self.langaugeViewModelDelegate?.didNotLoadLanguages(message: "The movie database is not available.")
+                return
+            }
             
-            self.treatResponse(result: result)
-            
-            self.primaryTranslations = result as! Array
-            self.langaugeViewModelDelegate?.didLoadPrimaryTranslations()
         }
     }
     
@@ -66,6 +82,7 @@ class LanguageViewModel {
                 self.langaugeViewModelDelegate?.didLoadCountries()
             } catch {
                 print(error)
+                self.langaugeViewModelDelegate?.didNotLoadLanguages(message: error.localizedDescription)
             }
         }
     }
@@ -81,6 +98,7 @@ class LanguageViewModel {
                 self.langaugeViewModelDelegate?.didLoadLanguages()
             } catch {
                 print(error)
+                self.langaugeViewModelDelegate?.didNotLoadLanguages(message: error.localizedDescription)
             }
         }
     }
@@ -137,8 +155,7 @@ class LanguageViewModel {
     func isLanguageChanged() -> Bool {
         return ConstantsUtil.isLanguageChanged()
     }
-    
-    
+
 }
 
 

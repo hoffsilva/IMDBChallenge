@@ -16,6 +16,7 @@ class DetailMovieTableView: UITableViewController {
     
     var upcomingMovieListViewModel: UpcomingMoviesListViewModel!
     var movieTrailerViewModel = MovieTrailerViewModel()
+    var collectionViewMovieTrailers: UICollectionView!
     var indexPath: IndexPath!
     
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -56,17 +57,18 @@ class DetailMovieTableView: UITableViewController {
         if segue.destination.isKind(of: MovieTrailersCollectionView.self) {
             (segue.destination as? MovieTrailersCollectionView)?.movieTrailerViewModel.loadTrailers(from: upcomingMovieListViewModel.getMovieId(fromMovie: indexPath))
             (segue.destination as? MovieTrailersCollectionView)?.movieTrailerViewModel.movieTrailerViewModelDelegate = self
+            collectionViewMovieTrailers = (segue.destination as? MovieTrailersCollectionView)?.collectionView
         }
     }
 }
 
 extension DetailMovieTableView: MovieTrailerViewModelDelegate {
     func trailersLoaded() {
-        print("")
+        collectionViewMovieTrailers.reloadData()
     }
     
     func trailersNotLoaded(message: String) {
-        print("")
+        noticeOnlyText(message)
     }
     
     

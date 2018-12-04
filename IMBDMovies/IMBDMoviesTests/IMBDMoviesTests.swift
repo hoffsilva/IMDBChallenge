@@ -13,34 +13,77 @@ import Alamofire
 
 class IMBDMoviesTests: XCTestCase {
     
-    let upcomingMoviesListViewModel = UpcomingMoviesListViewModel()
-    var moviesQuantity = 20
+    var exp: XCTestExpectation!
 
     override func setUp() {
-        
+        super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDown() {
+        super.tearDown()
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
     func testPerformanceGetUpcomingMovies() {
         self.measure {
-            let exp = expectation(description: "Server fetch")
+            exp = expectation(description: "Upcoming movies fetch")
             ServiceRequest.fetchData(endPointURL: ConstantsUtil.upcomingMoviesURL(), responseJSON: { (result) in
-                exp.fulfill()
+                self.exp.fulfill()
             })
-            waitForExpectations(timeout: 100000, handler: { (error) in
-                print(error?.localizedDescription ?? "Error")
-            })
+            self.wait()
         }
     }
     
     func testGetUpcomingMovies() {
+        exp = expectation(description: "Get upcoming movies")
         ServiceRequest.fetchData(endPointURL: ConstantsUtil.upcomingMoviesURL()) { (result) in
-            XCTAssertNotNil(result as! UnboxableDictionary)
+            XCTAssertTrue(result is UnboxableDictionary)
+            self.exp.fulfill()
         }
+        wait()
+    }
+    
+    
+    func testGetSearchMovie() {
+        ConstantsUtil.setQueryValue(value: "avengers")
+        exp = expectation(description: "Search movie by parameter")
+        ServiceRequest.fetchData(endPointURL: ConstantsUtil.searchMoviesURL()) { (result) in
+            XCTAssertTrue(result is UnboxableDictionary)
+            self.exp.fulfill()
+        }
+        wait()
+    }
+    
+    func testQueryValue() {
+        XCTAssertEqual("avengers", ConstantsUtil.getQueryValue())
+    }
+    
+    func testGetPrimaryTranslations() {
+        exp = expectation(description: "Primary Translations")
+        ServiceRequest.fetchData(endPointURL: ConstantsUtil.primaryTranslationsURL()) { (result) in
+            XCTAssertTrue(result is Array<String>)
+            self.exp.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetCountries() {
+        exp = expectation(description: "Countries")
+        ServiceRequest.fetchData(endPointURL: ConstantsUtil.countriesURL()) { (result) in
+            XCTAssertTrue(result is Array<UnboxableDictionary>)
+            self.exp.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetLanguages() {
+        exp = expectation(description: "Languages")
+        ServiceRequest.fetchData(endPointURL: ConstantsUtil.languagesURL()) { (result) in
+            XCTAssertTrue(result is Array<UnboxableDictionary>)
+            self.exp.fulfill()
+        }
+        wait()
     }
     
     func testConnection() {
@@ -49,20 +92,12 @@ class IMBDMoviesTests: XCTestCase {
 
 }
 
-extension IMBDMoviesTests: UpcomingMoviesListViewModelDelegate {
+extension IMBDMoviesTests {
     
-    func didLoadMoviesList() {
-        moviesQuantity = upcomingMoviesListViewModel.moviesList.count
-        print(moviesQuantity)
+    func wait() {
+        waitForExpectations(timeout: 10) { (error) in
+            print(error?.localizedDescription ?? "Error")
+        }
     }
-    
-    func didNotLoadMoviesList(message: String) {
-        
-    }
-    
-    func searchIsActive() {
-        
-    }
-    
     
 }

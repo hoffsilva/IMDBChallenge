@@ -14,11 +14,6 @@ class MovieTrailersCollectionView: UICollectionViewController {
     
     let movieTrailerViewModel = MovieTrailerViewModel()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -37,23 +32,6 @@ class MovieTrailersCollectionView: UICollectionViewController {
         cell.movieTrailerWebView.navigationDelegate = cell.self
         cell.movieTrailerWebView.load(URLRequest(url: youtubeURL))
         return cell
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        collectionView.reloadData()
-    }
-    
-}
-
-extension MovieTrailersCollectionView: MovieTrailerViewModelDelegate {
-    
-    func trailersLoaded() {
-        collectionView.reloadData()
-    }
-    
-    func trailersNotLoaded(message: String) {
-        print(message)
     }
     
 }
