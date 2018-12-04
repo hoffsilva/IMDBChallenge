@@ -76,7 +76,7 @@ enum NoticeType{
 class SwiftNotice: NSObject {
     
     static var windows = Array<UIWindow?>()
-    static let rv = UIApplication.shared.keyWindow?.subviews.first as UIView!
+    static let rv = UIApplication.shared.keyWindow?.subviews.first as! UIView
     static var timer: DispatchSource!
     static var timerTimes = 0
     
@@ -169,7 +169,7 @@ class SwiftNotice: NSObject {
                 iv.image = imageNames.first!
                 iv.contentMode = UIView.ContentMode.scaleAspectFit
                 mainView.addSubview(iv)
-                timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: UInt(0)), queue: DispatchQueue.main) as! DispatchSource
+                timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: UInt(0)), queue: DispatchQueue.main) as? DispatchSource
                 timer.schedule(deadline: DispatchTime.now(), repeating: DispatchTimeInterval.milliseconds(timeInterval))
                 timer.setEventHandler(handler: { () -> Void in
                     let name = imageNames[timerTimes % imageNames.count]
@@ -187,7 +187,7 @@ class SwiftNotice: NSObject {
         
         window.frame = frame
         mainView.frame = frame
-        window.center = rv!.center
+        window.center = rv.center
         
         if let version = Double(UIDevice.current.systemVersion),
             version < 9.0 {
@@ -232,7 +232,7 @@ class SwiftNotice: NSObject {
         mainView.frame = superFrame
         
         label.center = mainView.center
-        window.center = rv!.center
+        window.center = rv.center
         
         if let version = Double(UIDevice.current.systemVersion),
             version < 9.0 {
@@ -284,7 +284,7 @@ class SwiftNotice: NSObject {
         
         window.frame = frame
         mainView.frame = frame
-        window.center = rv!.center
+        window.center = rv.center
         
         if let version = Double(UIDevice.current.systemVersion),
             version < 9.0 {
@@ -295,7 +295,7 @@ class SwiftNotice: NSObject {
         }
         
         window.windowLevel = UIWindow.Level.alert
-        window.center = rv!.center
+        window.center = rv.center
         window.isHidden = false
         window.addSubview(mainView)
         windows.append(window)
@@ -314,9 +314,9 @@ class SwiftNotice: NSObject {
     // just for iOS 8
     static func getRealCenter() -> CGPoint {
         if UIApplication.shared.statusBarOrientation.hashValue >= 3 {
-            return CGPoint(x: rv!.center.y, y: rv!.center.x)
+            return CGPoint(x: rv.center.y, y: rv.center.x)
         } else {
-            return rv!.center
+            return rv.center
         }
     }
 }

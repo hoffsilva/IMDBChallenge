@@ -27,9 +27,18 @@ class DetailMovieTableView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieTrailerViewModel.movieTrailerViewModelDelegate = self
         setMovieParameters()
+        navigationItem.backBarButtonItem?.title = ""
+        movieTrailerViewModel.movieTrailerViewModelDelegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(shareMovie))
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        loadView()
+        setMovieParameters()
+        movieTrailerViewModel.loadTrailers(from: upcomingMovieListViewModel.getMovieId(fromMovie: indexPath) )
+        tableView.reloadData()
+        collectionViewMovieTrailers.reloadInputViews()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

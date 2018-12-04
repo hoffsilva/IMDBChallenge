@@ -24,7 +24,6 @@ class MovieTrailerViewModel {
         ServiceRequest.fetchData(endPointURL: ConstantsUtil.movieTrailersURL(from: movieID)) { (result) in
             
             guard let movieTrailer = result as? UnboxableDictionary else {
-                self.movieTrailerViewModelDelegate.trailersNotLoaded(message: "The movie database is not available.")
                 return
             }
             

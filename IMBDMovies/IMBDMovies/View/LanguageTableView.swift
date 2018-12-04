@@ -22,6 +22,7 @@ class LanguageTableView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Translations"
         alertView.delegate = self
         languageViewModel.langaugeViewModelDelegate = self
         pleaseWait()

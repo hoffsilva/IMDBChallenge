@@ -46,14 +46,15 @@ struct ServiceRequest {
             DispatchQueue.main.async {
                 let alert = FCAlertView()
                 alert.showAlert(
-                    withTitle: "Error",
-                    withSubtitle: "The internet connection has some problem 🤔",
+                    withTitle: "Internet Connection",
+                    withSubtitle: "You are offline.",
                     withCustomImage: nil,
                     withDoneButtonTitle: nil,
                     andButtons: nil)
+                alert.autoHideSeconds = 5
                 alert.dismissOnOutsideTouch = true
                 alert.hideDoneButton = true
-                alert.makeAlertTypeCaution()
+                alert.makeAlertTypeWarning()
             }
         }
     }
