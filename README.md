@@ -2,7 +2,7 @@
 # Up Movies
 Upcoming Movies is an iOS application that shows the upcomig movies from [The Movie Database (TMDb)](https://www.themoviedb.org/) Api.
 Using it, you can search movies typing full or part of movie's name, watch trailers and share the movie link.
-The app can be used on iPads and iPhones with iOS 10.0+ in Portrait or Landscape mode.
+The app can be used on iPads and iPhones with iOS 11.0+ in Portrait or Landscape mode.
 Enjoy it.
 
 ## Project Description
