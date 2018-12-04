@@ -15,6 +15,7 @@ class UpcomingMovieItemTableViewCell: UITableViewCell {
     @IBOutlet weak var movieAverage: UILabel!
     @IBOutlet weak var movieReleaseDate: UILabel!
     @IBOutlet weak var movieNoPosterImageView: UIImageView!
+    @IBOutlet weak var movieGenresLabel: UILabel!
     
     
 }

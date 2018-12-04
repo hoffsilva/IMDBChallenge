@@ -15,6 +15,7 @@ class DetailMovieTableView: UITableViewController {
     
     
     var upcomingMovieListViewModel: UpcomingMoviesListViewModel!
+    var genreListViewModel: GenreListViewModel!
     var movieTrailerViewModel = MovieTrailerViewModel()
     var movieTrailerCollectionView = MovieTrailersCollectionView()
     var collectionViewMovieTrailers: UICollectionView!
@@ -26,6 +27,8 @@ class DetailMovieTableView: UITableViewController {
     @IBOutlet weak var averageLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var genresListLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +52,6 @@ class DetailMovieTableView: UITableViewController {
     func setMovieParameters() {
         backgroundImageView.sd_addActivityIndicator()
         backgroundImageView.startAnimating()
-        print(upcomingMovieListViewModel.getPoster(fromMovie: indexPath))
         backgroundImageView.sd_setImage(with: URL(string: upcomingMovieListViewModel.getPoster(fromMovie: indexPath))) { (image, error, cache, url) in
             if error == nil {
                 self.backgroundImageView.image = image
@@ -61,6 +63,7 @@ class DetailMovieTableView: UITableViewController {
         titleLabel.text = upcomingMovieListViewModel.getTitle(fromMovie: indexPath)
         averageLabel.text = "\(upcomingMovieListViewModel.getVoteAvegare(fromMovie: indexPath))"
         overviewLabel.text = upcomingMovieListViewModel.getOverview(fromMovie: indexPath)
+        genresListLabel.text = genreListViewModel.getGenresListString(from: upcomingMovieListViewModel.getGenreId(fromMovie: indexPath))
         releaseDateLabel.text = upcomingMovieListViewModel.getReleaseDate(fromMovie: indexPath)
     }
     

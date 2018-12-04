@@ -13,6 +13,7 @@ import SDWebImage
 class UpcomingMoviesListTableView: UITableViewController {
     
     let upcomingMoviesListViewModel = UpcomingMoviesListViewModel()
+    let genresListViewModel = GenreListViewModel()
     let searchController = UISearchController(searchResultsController: nil)
     var selectedIndex: IndexPath!
     
@@ -23,7 +24,10 @@ class UpcomingMoviesListTableView: UITableViewController {
         configureSearchBar()
         addRefreshControl()
         upcomingMoviesListViewModel.upcomingMoviesListViewModelDelegate = self
+        genresListViewModel.genresListViewModelDelegate = self
+        genresListViewModel.loadGenresList()
         upcomingMoviesListViewModel.getUpcomingMovies()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,7 +62,7 @@ extension UpcomingMoviesListTableView {
         cell.movieAverage.text = "\(upcomingMoviesListViewModel.getVoteAvegare(fromMovie: indexPath))"
         cell.movieBackdropPosterImageView.sd_addActivityIndicator()
         cell.movieBackdropPosterImageView.startAnimating()
-        print(upcomingMoviesListViewModel.getBackdropPoster(fromMovie: indexPath))
+        cell.movieGenresLabel.text = genresListViewModel.getGenresListString(from: upcomingMoviesListViewModel.getGenreId(fromMovie: indexPath))
         cell.movieBackdropPosterImageView.sd_setImage(with: URL(string: upcomingMoviesListViewModel.getBackdropPoster(fromMovie: indexPath))) { (image, error, cacheType, url) in
             if error == nil {
                 cell.movieNoPosterImageView.isHidden = true
@@ -97,6 +101,7 @@ extension UpcomingMoviesListTableView {
         if segue.identifier == "segueDetailMovie" {
             let movieDetailView = segue.destination as! DetailMovieTableView
             movieDetailView.upcomingMovieListViewModel = upcomingMoviesListViewModel
+            movieDetailView.genreListViewModel = genresListViewModel
             movieDetailView.indexPath = selectedIndex
         }
     }
@@ -124,6 +129,18 @@ extension UpcomingMoviesListTableView: UpcomingMoviesListViewModelDelegate {
     func searchIsActive() {
         self.tableView.reloadData()
     }
+}
+
+extension UpcomingMoviesListTableView: GenresListViewModelDelegate {
+    
+    func didLoadGenresList() {
+        print("Genres Ok")
+    }
+    
+    func didNotLoadGenreList(message: String) {
+        print("Genres not Ok.")
+    }
+    
 }
 
 extension UpcomingMoviesListTableView: UISearchControllerDelegate, UISearchBarDelegate {

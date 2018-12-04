@@ -108,6 +108,10 @@ struct ConstantsUtil {
         return String(getValue(from: "host_themoviedb_web"))
     }
     
+    static func getGenreListPath() -> String {
+        return String(getValue(from: "GET_GENRES_LIST"))
+    }
+    
     static func isLanguageChanged() -> Bool {
         return Bool(getValue(from: "language_changed").isEmpty)
     }
@@ -121,6 +125,15 @@ struct ConstantsUtil {
                getValue(from: "GET_MOVIE_TRAILERS").replacingOccurrences(of: "<MOVIE-ID>", with: "\(movieID)", options: .literal, range: nil) +
                getApiKeyParam() +
                getApiKeyValue()
+    }
+    
+    static func genresListURL() -> String {
+        return getApiMainUrl() +
+               getGenreListPath() +
+               getApiKeyParam() +
+               getApiKeyValue() +
+               getLanguageParam() +
+               getLanguageValue()
     }
     
     static func upcomingMoviesURL() -> String {
