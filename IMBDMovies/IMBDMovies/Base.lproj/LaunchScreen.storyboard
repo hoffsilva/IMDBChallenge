@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_screen" translatesAutoresizingMaskIntoConstraints="NO" id="HOk-Rc-Xud">
+                                <rect key="frame" x="4" y="150" width="367" height="367"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="from The Movie Database" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="51P-m9-Ys2">
+                                <rect key="frame" x="112.5" y="525" width="150" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="Jit-HN-Dth"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arial-ItalicMT" family="Arial" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming Movies" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tpl-nR-eKv">
+                                <rect key="frame" x="76" y="92" width="223.5" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Hxt-8A-wRA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="51P-m9-Ys2" firstAttribute="top" secondItem="HOk-Rc-Xud" secondAttribute="bottom" constant="8" id="51v-e8-Cqj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="51P-m9-Ys2" secondAttribute="bottom" constant="127" id="63t-Ex-J7d"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HOk-Rc-Xud" secondAttribute="trailing" constant="4" id="67v-Za-kPH"/>
+                            <constraint firstItem="HOk-Rc-Xud" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="8GM-xh-uka"/>
+                            <constraint firstItem="Tpl-nR-eKv" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="71" id="BxJ-Wo-ZP4"/>
+                            <constraint firstItem="HOk-Rc-Xud" firstAttribute="top" secondItem="Tpl-nR-eKv" secondAttribute="bottom" constant="8" id="Jqf-k2-qV7"/>
+                            <constraint firstItem="HOk-Rc-Xud" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="KK8-6O-0Zu"/>
+                            <constraint firstItem="HOk-Rc-Xud" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Ozh-aA-Ef2"/>
+                            <constraint firstItem="Tpl-nR-eKv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="vHi-9o-OaW"/>
+                            <constraint firstItem="HOk-Rc-Xud" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="4" id="wBF-jc-Ad0"/>
+                            <constraint firstItem="51P-m9-Ys2" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ztf-ZD-tNt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <size key="freeformSize" width="375" height="667"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="launch_screen" width="512" height="512"/>
+    </resources>
+</document>
