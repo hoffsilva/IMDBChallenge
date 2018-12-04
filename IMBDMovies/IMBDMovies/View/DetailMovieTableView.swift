@@ -16,9 +16,11 @@ class DetailMovieTableView: UITableViewController {
     
     var upcomingMovieListViewModel: UpcomingMoviesListViewModel!
     var movieTrailerViewModel = MovieTrailerViewModel()
+    var movieTrailerCollectionView = MovieTrailersCollectionView()
     var collectionViewMovieTrailers: UICollectionView!
     var indexPath: IndexPath!
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var averageLabel: UILabel!
@@ -36,9 +38,8 @@ class DetailMovieTableView: UITableViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         loadView()
         setMovieParameters()
-        movieTrailerViewModel.loadTrailers(from: upcomingMovieListViewModel.getMovieId(fromMovie: indexPath) )
-        tableView.reloadData()
-        collectionViewMovieTrailers.reloadInputViews()
+        containerView.addSubview(collectionViewMovieTrailers)
+        containerView.didMoveToSuperview()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -68,8 +69,10 @@ class DetailMovieTableView: UITableViewController {
             (segue.destination as? MovieTrailersCollectionView)?.movieTrailerViewModel.loadTrailers(from: upcomingMovieListViewModel.getMovieId(fromMovie: indexPath))
             (segue.destination as? MovieTrailersCollectionView)?.movieTrailerViewModel.movieTrailerViewModelDelegate = self
             collectionViewMovieTrailers = (segue.destination as? MovieTrailersCollectionView)?.collectionView
+            movieTrailerCollectionView = ((segue.destination as? MovieTrailersCollectionView).self)!
         }
     }
+    
     
     @objc
     func shareMovie() {
