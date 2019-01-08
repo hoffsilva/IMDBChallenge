@@ -9,7 +9,6 @@ target 'IMBDMovies' do
   pod 'Alamofire', '~> 4.7'
   pod 'Unbox'
   pod 'SDWebImage', '~> 4.0'
-  pod 'SwiftyPlistManager'
   pod 'FCAlertView'
 
   target 'IMBDMoviesTests' do
