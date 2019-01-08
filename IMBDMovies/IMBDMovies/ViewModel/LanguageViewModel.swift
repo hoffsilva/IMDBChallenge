@@ -47,7 +47,7 @@ class LanguageViewModel {
     }
     
     func getPrimaryTranslations() {
-        ServiceRequest.fetchData(endPointURL: ConstantsUtil.primaryTranslationsURL()) { (result) in
+        ServiceRequest.fetchData(endPointURL: Memento.primaryTranslationsURL()) { (result) in
         
             if let resultFromApi = result as? UnboxableDictionary {
                 
@@ -72,7 +72,7 @@ class LanguageViewModel {
     }
     
     func getCountries() {
-        ServiceRequest.fetchData(endPointURL: ConstantsUtil.countriesURL()) { (result) in
+        ServiceRequest.fetchData(endPointURL: Memento.countriesURL()) { (result) in
             
            self.treatResponse(result: result)
             
@@ -88,7 +88,7 @@ class LanguageViewModel {
     }
     
     func getLanguages() {
-        ServiceRequest.fetchData(endPointURL: ConstantsUtil.languagesURL()) { (result) in
+        ServiceRequest.fetchData(endPointURL: Memento.languagesURL()) { (result) in
             
             self.treatResponse(result: result)
             
@@ -140,12 +140,12 @@ class LanguageViewModel {
     }
     
     func setDefaulTranslation(by indexPath: IndexPath) {
-        ConstantsUtil.setLanguageValue(language: getTranslation(by: indexPath).code)
-        ConstantsUtil.setLanguageChanged(value: "")
+        MementoEnum.language_param_value.setValue(value: getTranslation(by: indexPath).code)
+        MementoEnum.language_changed.setValue(value: "")
     }
     
     func selectedLanguage() -> String {
-        return ConstantsUtil.getLanguageValue()
+        return MementoEnum.language_param_value.getValue()
     }
     
     func isSelectedLanguage(by indexPath: IndexPath) -> Bool {
@@ -153,7 +153,7 @@ class LanguageViewModel {
     }
     
     func isLanguageChanged() -> Bool {
-        return ConstantsUtil.isLanguageChanged()
+        return !MementoEnum.language_changed.getValue().isEmpty
     }
 
 }

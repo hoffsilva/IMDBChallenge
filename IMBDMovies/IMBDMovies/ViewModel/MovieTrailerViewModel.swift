@@ -21,7 +21,7 @@ class MovieTrailerViewModel {
     var movieTrailers = [MovieTrailer]()
     
     func loadTrailers(from movieID: Int) {
-        ServiceRequest.fetchData(endPointURL: ConstantsUtil.movieTrailersURL(from: movieID)) { (result) in
+        ServiceRequest.fetchData(endPointURL: Memento.movieTrailersURL(from: movieID)) { (result) in
             
             guard let movieTrailer = result as? UnboxableDictionary else {
                 return
@@ -45,6 +45,6 @@ class MovieTrailerViewModel {
     }
     
     func getVideoURL(from video: IndexPath) -> String {
-        return ConstantsUtil.hostTrailerURL(from: movieTrailers[video.row].key)
+        return UrlsEnum.host_trailer_url.getValue() + String( movieTrailers[video.row].key)
     }
 }

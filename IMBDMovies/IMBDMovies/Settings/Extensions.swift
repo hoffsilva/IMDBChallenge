@@ -2,10 +2,30 @@
 //  Extensions.swift
 //  IMBDMovies
 //
-//  Created by Hoff Henry Pereira da Silva on 01/12/2018.
-//  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
+//  Created by Cast Group on 08/01/19.
+//  Copyright © 2019 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
 import Foundation
-import UIKit
 
+extension PlistManager where Self: RawRepresentable, Self.RawValue == String {
+    
+    func getValue() -> String {
+        guard let path = Bundle.main.path(forResource: Self.plistName, ofType: "plist"),
+            let configDictionary = NSDictionary(contentsOfFile: path),
+            let value = configDictionary.value(forKey: rawValue) as? String else {
+                return ""
+        }
+        return value
+    }
+    
+    func setValue(value: String) {
+        guard let path = Bundle.main.path(forResource: Self.plistName, ofType: "plist"),
+            let configDictionary = NSMutableDictionary(contentsOfFile: path) else {
+                return
+        }
+        configDictionary[rawValue] = value
+        configDictionary.write(toFile: path, atomically: true)
+    }
+    
+}

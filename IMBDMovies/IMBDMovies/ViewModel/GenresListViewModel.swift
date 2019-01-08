@@ -21,7 +21,7 @@ class GenreListViewModel {
     var genresList = [Genre]()
     
     func loadGenresList() {
-        ServiceRequest.fetchData(endPointURL: ConstantsUtil.genresListURL()) { (result) in
+        ServiceRequest.fetchData(endPointURL: Memento.genresListURL()) { (result) in
             guard let unwrappedResult = result as? UnboxableDictionary else {
                 return
             }
@@ -51,7 +51,7 @@ class GenreListViewModel {
         for genreID in genresListID {
             for genre in genresList {
                 if genreID == (genre.id ?? -1) {
-                    genresListString = "\(genre.name ?? ""), "
+                    genresListString += "\(genre.name ?? ""), "
                 }
             }
         }

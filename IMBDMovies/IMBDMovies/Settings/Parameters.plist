@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>include_adult_param</key>
+	<string>&amp;include_adult=</string>
+	<key>query_param</key>
+	<string>&amp;query=</string>
+	<key>api_key_param</key>
+	<string>?api_key=</string>
+	<key>page_param</key>
+	<string>&amp;page=</string>
+	<key>language_param</key>
+	<string>&amp;language=</string>
+</dict>
+</plist>
