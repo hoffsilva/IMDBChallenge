@@ -131,7 +131,7 @@ class UpcomingMoviesListViewModel {
     }
     
     func getVoteAvegare(fromMovie atIndexpath: IndexPath) -> Double {
-        return unwrapValue(value: getMovie(from: atIndexpath).vote_average)
+        return unwrapValue(value: getMovie(from: atIndexpath).voteAverage)
     }
     
     func getTitle(fromMovie atIndexpath: IndexPath) -> String {
@@ -139,15 +139,15 @@ class UpcomingMoviesListViewModel {
     }
     
     func getPoster(fromMovie atIndexpath: IndexPath) -> String {
-        return unwrapValue(value: getPosterUrl(poster_path: getMovie(from: atIndexpath).poster_path))
+        return unwrapValue(value: getPosterUrl(poster_path: getMovie(from: atIndexpath).posterPath))
     }
     
     func getGenreId(fromMovie atIndexpath: IndexPath) -> [Int] {
-        return unwrapValue(value: getMovie(from: atIndexpath).genre_ids)
+        return unwrapValue(value: getMovie(from: atIndexpath).genreIds)
     }
     
     func getBackdropPoster(fromMovie atIndexpath: IndexPath) -> String {
-        return unwrapValue(value: getPosterUrl(poster_path: getMovie(from: atIndexpath).backdrop_path))
+        return unwrapValue(value: getPosterUrl(poster_path: getMovie(from: atIndexpath).backdropPath))
     }
     
     func getOverview(fromMovie atIndexpath: IndexPath) -> String {
@@ -155,7 +155,7 @@ class UpcomingMoviesListViewModel {
     }
     
     func getReleaseDate(fromMovie atIndexpath: IndexPath) -> String {
-        return unwrapValue(value: getMovie(from: atIndexpath).release_date)
+        return unwrapValue(value: getMovie(from: atIndexpath).releaseDate)
     }
     
     func getMovieId(fromMovie atIndexpath: IndexPath) -> Int {

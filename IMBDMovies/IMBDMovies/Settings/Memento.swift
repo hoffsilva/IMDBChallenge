@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyPlistManager
 
 
 enum MementoEnum: String, PlistManager {
