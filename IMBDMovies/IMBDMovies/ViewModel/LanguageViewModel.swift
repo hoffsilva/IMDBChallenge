@@ -124,15 +124,15 @@ class LanguageViewModel {
     }
     
     func getTranslationName(by indexPath: IndexPath) -> String {
-        return getTranslation(by: indexPath).name
+        return getTranslation(by: indexPath).name ?? "No Name"
     }
     
     func getTranslationCountry(by indexPath: IndexPath) -> String {
-        return getTranslation(by: indexPath).country
+        return getTranslation(by: indexPath).country ?? "No Name"
     }
     
     func setDefaulTranslation(by indexPath: IndexPath) {
-        MementoEnum.language_param_value.setValue(value: getTranslation(by: indexPath).code)
+        MementoEnum.language_param_value.setValue(value: getTranslation(by: indexPath).code ?? "No name")
         MementoEnum.language_changed.setValue(value: "")
     }
     
