@@ -67,38 +67,26 @@ class UpcomingMoviesListViewModel {
                 return
             }
             
+            //            do {
+            //                let error: ErrorResponse = try unbox(dictionary: movieData as! UnboxableDictionary)
+            //                self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: error.status_message)
+            //                return
+            //            } catch {}
+            //
             do {
-                let error: ErrorResponse = try unbox(dictionary: movieData as! UnboxableDictionary)
-                self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: error.status_message)
-                return
-            } catch {}
-            
-            do {
-                let results: Result = try unbox(dictionary: movieData as! UnboxableDictionary)
                 
-                guard let currentPageNumber = results.page else {
-                    self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: "Could not load movie data.")
-                    return
-                }
-                MementoEnum.current_page_number_value.setValue(value: String(currentPageNumber))
+                let results = try JSONDecoder().decode(Result.self, from: movieData as! Data)
                 
-                guard let lastPageNumber = results.total_pages else {
-                    self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: "Could not load movie data.")
-                    return
-                }
-                MementoEnum.last_page_number_value.setValue(value: String(lastPageNumber))
+                MementoEnum.current_page_number_value.setValue(value: String(results.page))
+                MementoEnum.last_page_number_value.setValue(value: String(results.totalPages))
                 
-                guard let movies = results.results else {
-                    self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: "Could not load movie data.")
-                    return
-                }
                 
                 let cp = Int(MementoEnum.current_page_number_value.getValue()) ?? 0
                 
                 if cp == 1 {
                     self.moviesList.removeAll()
                 }
-                for movie in movies {
+                for movie in results.results {
                     self.moviesList.append(movie)
                 }
                 
@@ -117,7 +105,7 @@ class UpcomingMoviesListViewModel {
     
     private func getPosterUrl(poster_path: String?) -> String {
         if let poster = poster_path {
-           return UrlsEnum.poster_main_url.getValue() + poster
+            return UrlsEnum.poster_main_url.getValue() + poster
         } else {
             return ""
         }

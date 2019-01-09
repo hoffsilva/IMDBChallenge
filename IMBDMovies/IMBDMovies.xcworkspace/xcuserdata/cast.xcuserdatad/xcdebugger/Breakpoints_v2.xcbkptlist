@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IMBDMovies/ViewModel/UpcomingMoviesListViewModel.swift"
-            timestampString = "568678466.725957"
+            filePath = "IMBDMovies/Network/ServiceRequest.swift"
+            timestampString = "568692199.580538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "fetchDataFromTMDB(by:)"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "fetchData(endPointURL:responseJSON:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

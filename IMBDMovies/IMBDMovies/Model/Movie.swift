@@ -6,8 +6,6 @@
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-import Unbox
-
 struct Movie: Codable {
     
     let voteCount        : Int!
