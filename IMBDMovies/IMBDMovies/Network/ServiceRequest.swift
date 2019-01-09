@@ -17,6 +17,8 @@ struct ServiceRequest {
     
     fileprivate static var isConnected = true
     
+
+    
     static func fetchData(endPointURL: String, responseJSON: @escaping obj) {
         if isConnected {
             Alamofire.request(endPointURL.trimmingCharacters(in: .whitespaces)).responseJSON { (response) in

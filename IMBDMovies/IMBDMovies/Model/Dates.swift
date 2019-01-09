@@ -6,7 +6,7 @@
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-struct Dates: Codable {
+struct Dates: Decodable {
     let maximum: String?
     let minimum: String?
     

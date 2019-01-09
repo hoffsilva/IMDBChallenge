@@ -7,27 +7,18 @@
 //
 
 import Foundation
-import Unbox
 
-struct Country {
+struct Country: Decodable {
     
-    let iso_3166_1  : String?
-    let english_name: String?
-    
-    init(iso_3166_1: String, english_name: String) {
-        self.iso_3166_1   = iso_3166_1
-        self.english_name = english_name
-    }
+    let iso_3166_1: String
+    let english_name: String
     
 }
 
-extension Country: Unboxable {
-    
-    init(unboxer: Unboxer) throws {
-        self.iso_3166_1   = try? unboxer.unbox(key: "iso_3166_1")
-        self.english_name = try? unboxer.unbox(key: "english_name")
+extension Country {
+    enum CondingKeys: String, CodingKey {
+        case english_name, iso_3166_1
     }
-    
 }
 
 

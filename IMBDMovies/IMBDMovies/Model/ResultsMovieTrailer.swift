@@ -7,18 +7,14 @@
 //
 
 import Foundation
-import Unbox
 
-struct ResultsMovieTrailer {
+struct ResultsMovieTrailer: Decodable {
     let id      : Int
     let results : [MovieTrailer]
 }
 
-extension ResultsMovieTrailer: Unboxable {
-    
-    init(unboxer: Unboxer) throws {
-        self.id      = try unboxer.unbox(key: "id")
-        self.results = try unboxer.unbox(key: "results")
+extension ResultsMovieTrailer {
+    enum CodingKeys: String, CodingKey {
+        case id, results
     }
-    
 }

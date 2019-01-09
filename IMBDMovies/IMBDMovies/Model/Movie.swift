@@ -6,7 +6,7 @@
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-struct Movie: Codable {
+struct Movie: Decodable {
     
     let voteCount        : Int!
     let id                : Int!
@@ -22,36 +22,6 @@ struct Movie: Codable {
     let adult             : Bool!
     let overview          : String!
     let releaseDate      : String!
-    
-    init(voteCount       : Int,
-        id               : Int,
-        video            : Bool,
-        voteAverage      : Double,
-        title            : String,
-        popularity       : Double,
-        posterPath       : String,
-        originalLanguage : String,
-        originalTitle    : String,
-        genreIds         : [Int],
-        backdropPath     : String,
-        adult            : Bool,
-        overview         : String,
-        releaseDate      : String) {
-         self.voteCount         = voteCount
-         self.id                = id
-         self.video             = video
-         self.voteAverage       = voteAverage
-         self.title             = title
-         self.popularity        = popularity
-         self.posterPath        = posterPath
-         self.originalLanguage  = originalLanguage
-         self.originalTitle     = originalTitle
-         self.genreIds          = genreIds
-         self.backdropPath      = backdropPath
-         self.adult             = adult
-         self.overview          = overview
-         self.releaseDate       = releaseDate
-    }
 
 }
 

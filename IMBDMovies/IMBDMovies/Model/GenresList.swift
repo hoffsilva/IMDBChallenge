@@ -7,16 +7,13 @@
 //
 
 import Foundation
-import Unbox
 
-struct GenresList {
+struct GenresList: Decodable {
     let genres : [Genre]?
 }
 
-extension GenresList: Unboxable {
-    
-    init(unboxer: Unboxer) throws {
-        self.genres = try? unboxer.unbox(key: "genres")
+extension GenresList {
+    enum CodingKeys: String, CodingKey {
+        case genres
     }
-    
 }

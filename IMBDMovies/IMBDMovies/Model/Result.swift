@@ -6,27 +6,13 @@
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-struct Result: Codable {
+struct Result: Decodable {
     
-    let results       :  [Movie]
+    let results       :  [Movie]!
     let page          :  Int
     let totalResults  :  Int
     let dates         :  Dates
     let totalPages    :  Int
-    
-    init(results       :  [Movie],
-        page          :  Int,
-        totalResults  :  Int,
-        dates         :  Dates,
-        totalPages    :  Int) {
-        
-        self.results = results
-        self.page = page
-        self.totalResults = totalResults
-        self.dates = dates
-        self.totalPages = totalPages
-        
-    }
     
 }
 
