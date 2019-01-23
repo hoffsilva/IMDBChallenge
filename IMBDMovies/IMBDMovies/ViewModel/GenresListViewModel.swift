@@ -22,18 +22,18 @@ class GenreListViewModel {
     
     func loadGenresList() {
         ServiceRequest.fetchData(endPointURL: Memento.genresListURL()) { (result) in
-            guard let unwrappedResult = result as? UnboxableDictionary else {
+            guard let unwrappedResult = result else {
                 return
             }
             
             do {
-                let error: ErrorResponse = try unbox(dictionary: unwrappedResult)
-                self.genresListViewModelDelegate.didNotLoadGenreList(message: error.status_message)
+                let error: ErrorResponse = try JSONDecoder().decode(ErrorResponse.self, from: unwrappedResult)
+                self.genresListViewModelDelegate.didNotLoadGenreList(message: error.statusMessage)
                 return
             } catch {}
             
             do {
-                let genresList : GenresList = try unbox(dictionary: unwrappedResult)
+                let genresList : GenresList = try JSONDecoder().decode(GenresList.self, from: unwrappedResult)
                 guard let unwrappedGenresList = genresList.genres else {
                     return
                 }
@@ -50,8 +50,8 @@ class GenreListViewModel {
         var genresListString = ""
         for genreID in genresListID {
             for genre in genresList {
-                if genreID == (genre.id ?? -1) {
-                    genresListString += "\(genre.name ?? ""), "
+                if genreID == (genre.id ) {
+                    genresListString += "\(genre.name), "
                 }
             }
         }

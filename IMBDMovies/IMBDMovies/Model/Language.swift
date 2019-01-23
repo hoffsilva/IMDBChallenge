@@ -9,20 +9,18 @@
 import Foundation
 import Unbox
 
-struct Language {
+struct Language: Decodable {
     
-    let iso_639_1   : String?
-    let english_name: String?
-    let name        : String?
+    let iso        : String?
+    let englishName: String?
+    let name       : String?
     
 }
 
-extension Language: Unboxable {
-    
-    init(unboxer: Unboxer) throws {
-        self.iso_639_1    = try? unboxer.unbox(key: "iso_639_1")
-        self.english_name = try? unboxer.unbox(key: "english_name")
-        self.name         = try? unboxer.unbox(key: "name")
+extension Language {
+    enum CodingKeys: String, CodingKey {
+        case iso = "iso_639_1"
+        case englishName = "english_name"
+        case name
     }
-    
 }

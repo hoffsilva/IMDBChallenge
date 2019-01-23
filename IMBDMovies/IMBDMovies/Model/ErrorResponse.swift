@@ -9,18 +9,16 @@
 import Foundation
 import Unbox
 
-struct ErrorResponse {
+struct ErrorResponse: Decodable {
     
-    let status_code   : Int
-    let status_message: String
+    let statusCode   : Int
+    let statusMessage: String
     
 }
 
-extension ErrorResponse: Unboxable {
-    
-    init(unboxer: Unboxer) throws {
-        self.status_code    = try unboxer.unbox(key: "status_code")
-        self.status_message = try unboxer.unbox(key: "status_message")
+extension ErrorResponse {
+    enum CodingKeys: String, CodingKey {
+        case statusCode = "status_code"
+        case statusMessage = "status_message"
     }
-    
 }

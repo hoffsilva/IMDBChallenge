@@ -7,13 +7,12 @@
 //
 
 import Foundation
-import SwiftyPlistManager
 
 
 enum MementoEnum: String, PlistManager {
     
-    static var plistName: String = "Memento"
-
+    static let plistName: String = "Memento"
+    
     case language_changed
     case include_adult_value
     case query_value
@@ -31,9 +30,9 @@ struct Memento {
     
     static func movieTrailersURL(from movieID: Int) -> String {
         return UrlsEnum.api_main_url.getValue()         +
-             EndpointsEnum.get_movie_trailer.getValue().replacingOccurrences(of: "<MOVIE-ID>", with: String(movieID), options: .literal, range: nil) +
-             ParametersEnum.api_key_param.getValue()    +
-             MementoEnum.api_key_param_value.getValue()
+            EndpointsEnum.get_movie_trailer.getValue().replacingOccurrences(of: "<MOVIE-ID>", with: String(movieID), options: .literal, range: nil) +
+            ParametersEnum.api_key_param.getValue()    +
+            MementoEnum.api_key_param_value.getValue()
     }
     
     static func genresListURL() -> String {
@@ -46,14 +45,14 @@ struct Memento {
     }
     
     static func upcomingMoviesURL() -> String {
-            return UrlsEnum.api_main_url.getValue() +
-                EndpointsEnum.get_upcoming_movies.getValue() +
-                ParametersEnum.api_key_param.getValue() +
-                MementoEnum.api_key_param_value.getValue() +
-                ParametersEnum.language_param.getValue() +
-                MementoEnum.language_param_value.getValue() +
-                ParametersEnum.page_param.getValue() +
-                MementoEnum.current_page_number_value.getValue()
+        return UrlsEnum.api_main_url.getValue() +
+            EndpointsEnum.get_upcoming_movies.getValue() +
+            ParametersEnum.api_key_param.getValue() +
+            MementoEnum.api_key_param_value.getValue() +
+            ParametersEnum.language_param.getValue() +
+            MementoEnum.language_param_value.getValue() +
+            ParametersEnum.page_param.getValue() +
+            MementoEnum.current_page_number_value.getValue()
     }
     
     
@@ -92,6 +91,6 @@ struct Memento {
             ParametersEnum.api_key_param.getValue() +
             MementoEnum.api_key_param_value.getValue()
     }
-
+    
     
 }

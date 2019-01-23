@@ -6,19 +6,19 @@
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-import Unbox
-
-struct Dates {
+struct Dates: Decodable {
     let maximum: String?
     let minimum: String?
+    
+    init(maximum: String, minimum: String) {
+        self.maximum = maximum
+        self.minimum = minimum
+    }
 }
 
-extension Dates: Unboxable {
-    
-    init(unboxer: Unboxer) throws {
-        self.maximum = try? unboxer.unbox(key: "maximun")
-        self.minimum = try? unboxer.unbox(key: "minimun")
+extension Dates {
+    enum CodingKeys: String, CodingKey {
+        case maximum, minimum
     }
-    
 }
 

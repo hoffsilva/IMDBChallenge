@@ -23,18 +23,18 @@ class MovieTrailerViewModel {
     func loadTrailers(from movieID: Int) {
         ServiceRequest.fetchData(endPointURL: Memento.movieTrailersURL(from: movieID)) { (result) in
             
-            guard let movieTrailer = result as? UnboxableDictionary else {
+            guard let movieTrailer = result else {
                 return
             }
             
             do {
-                let error: ErrorResponse = try unbox(dictionary: movieTrailer)
-                self.movieTrailerViewModelDelegate.trailersNotLoaded(message: error.status_message)
+                let error: ErrorResponse = try JSONDecoder().decode(ErrorResponse.self, from: movieTrailer)
+                self.movieTrailerViewModelDelegate.trailersNotLoaded(message: error.statusMessage)
                 return
             } catch {}
             
             do {
-                let resultMovieTrailers : ResultsMovieTrailer = try unbox(dictionary: movieTrailer)
+                let resultMovieTrailers : ResultsMovieTrailer = try JSONDecoder().decode(ResultsMovieTrailer.self, from: movieTrailer)
                 self.movieTrailers = resultMovieTrailers.results
                 self.movieTrailerViewModelDelegate.trailersLoaded()
             } catch {

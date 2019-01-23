@@ -11,9 +11,9 @@ import Foundation
 
 struct Translation {
     
-    var language: String
-    var name    : String
-    var code    : String
-    var country : String
+    var language: String?
+    var name    : String?
+    var code    : String!
+    var country : String?
     
 }

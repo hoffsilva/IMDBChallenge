@@ -241,17 +241,17 @@
 		0BA1CB7321B161B700D14013 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0BA1CB7421B161CB00D14013 /* Movie.swift */,
-				0BF071EE21B16DDB008FC381 /* Result.swift */,
-				0BA19EB721B1772C00A1A4D1 /* Dates.swift */,
 				0BD6EE1221B3F8AE0078E178 /* Country.swift */,
-				0BD6EE1621B3FB160078E178 /* Language.swift */,
-				0BD6EE1A21B40FC90078E178 /* Translation.swift */,
-				0BD6EE3E21B46C870078E178 /* MovieTrailer.swift */,
-				0BD6EE4021B46DC60078E178 /* ResultsMovieTrailer.swift */,
+				0BA19EB721B1772C00A1A4D1 /* Dates.swift */,
 				0BBFEB2921B59272009F552C /* ErrorResponse.swift */,
 				0B4CF3EA21B6E7FF00129988 /* Genre.swift */,
 				0B4CF3EC21B6E90400129988 /* GenresList.swift */,
+				0BD6EE1621B3FB160078E178 /* Language.swift */,
+				0BA1CB7421B161CB00D14013 /* Movie.swift */,
+				0BD6EE3E21B46C870078E178 /* MovieTrailer.swift */,
+				0BF071EE21B16DDB008FC381 /* Result.swift */,
+				0BD6EE4021B46DC60078E178 /* ResultsMovieTrailer.swift */,
+				0BD6EE1A21B40FC90078E178 /* Translation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

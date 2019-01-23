@@ -67,38 +67,26 @@ class UpcomingMoviesListViewModel {
                 return
             }
             
+            //            do {
+            //                let error: ErrorResponse = try unbox(dictionary: movieData as! UnboxableDictionary)
+            //                self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: error.status_message)
+            //                return
+            //            } catch {}
+            //
             do {
-                let error: ErrorResponse = try unbox(dictionary: movieData as! UnboxableDictionary)
-                self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: error.status_message)
-                return
-            } catch {}
-            
-            do {
-                let results: Result = try unbox(dictionary: movieData as! UnboxableDictionary)
                 
-                guard let currentPageNumber = results.page else {
-                    self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: "Could not load movie data.")
-                    return
-                }
-                MementoEnum.current_page_number_value.setValue(value: String(currentPageNumber))
+                let results = try JSONDecoder().decode(Result.self, from: movieData as! Data)
                 
-                guard let lastPageNumber = results.total_pages else {
-                    self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: "Could not load movie data.")
-                    return
-                }
-                MementoEnum.last_page_number_value.setValue(value: String(lastPageNumber))
+                MementoEnum.current_page_number_value.setValue(value: String(results.page))
+                MementoEnum.last_page_number_value.setValue(value: String(results.totalPages))
                 
-                guard let movies = results.results else {
-                    self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: "Could not load movie data.")
-                    return
-                }
                 
                 let cp = Int(MementoEnum.current_page_number_value.getValue()) ?? 0
                 
                 if cp == 1 {
                     self.moviesList.removeAll()
                 }
-                for movie in movies {
+                for movie in results.results {
                     self.moviesList.append(movie)
                 }
                 
@@ -117,7 +105,7 @@ class UpcomingMoviesListViewModel {
     
     private func getPosterUrl(poster_path: String?) -> String {
         if let poster = poster_path {
-           return UrlsEnum.poster_main_url.getValue() + poster
+            return UrlsEnum.poster_main_url.getValue() + poster
         } else {
             return ""
         }
@@ -131,7 +119,7 @@ class UpcomingMoviesListViewModel {
     }
     
     func getVoteAvegare(fromMovie atIndexpath: IndexPath) -> Double {
-        return unwrapValue(value: getMovie(from: atIndexpath).vote_average)
+        return unwrapValue(value: getMovie(from: atIndexpath).voteAverage)
     }
     
     func getTitle(fromMovie atIndexpath: IndexPath) -> String {
@@ -139,15 +127,15 @@ class UpcomingMoviesListViewModel {
     }
     
     func getPoster(fromMovie atIndexpath: IndexPath) -> String {
-        return unwrapValue(value: getPosterUrl(poster_path: getMovie(from: atIndexpath).poster_path))
+        return unwrapValue(value: getPosterUrl(poster_path: getMovie(from: atIndexpath).posterPath))
     }
     
     func getGenreId(fromMovie atIndexpath: IndexPath) -> [Int] {
-        return unwrapValue(value: getMovie(from: atIndexpath).genre_ids)
+        return unwrapValue(value: getMovie(from: atIndexpath).genreIds)
     }
     
     func getBackdropPoster(fromMovie atIndexpath: IndexPath) -> String {
-        return unwrapValue(value: getPosterUrl(poster_path: getMovie(from: atIndexpath).backdrop_path))
+        return unwrapValue(value: getPosterUrl(poster_path: getMovie(from: atIndexpath).backdropPath))
     }
     
     func getOverview(fromMovie atIndexpath: IndexPath) -> String {
@@ -155,7 +143,7 @@ class UpcomingMoviesListViewModel {
     }
     
     func getReleaseDate(fromMovie atIndexpath: IndexPath) -> String {
-        return unwrapValue(value: getMovie(from: atIndexpath).release_date)
+        return unwrapValue(value: getMovie(from: atIndexpath).releaseDate)
     }
     
     func getMovieId(fromMovie atIndexpath: IndexPath) -> Int {
