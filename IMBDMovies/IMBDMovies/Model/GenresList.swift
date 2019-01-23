@@ -9,7 +9,7 @@
 import Foundation
 
 struct GenresList: Decodable {
-    let genres : [Genre]?
+    let genres: [Genre]?
 }
 
 extension GenresList {

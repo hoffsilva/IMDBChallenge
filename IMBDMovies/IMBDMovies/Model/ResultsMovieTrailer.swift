@@ -9,8 +9,8 @@
 import Foundation
 
 struct ResultsMovieTrailer: Decodable {
-    let id      : Int
-    let results : [MovieTrailer]
+    let id: Int
+    let results: [MovieTrailer]
 }
 
 extension ResultsMovieTrailer {

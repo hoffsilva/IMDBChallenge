@@ -9,16 +9,13 @@
 import Foundation
 
 struct Country: Decodable {
-    
-    let iso_3166_1: String
-    let english_name: String
-    
+    let iso3166: String
+    let englishName: String
 }
 
 extension Country {
     enum CondingKeys: String, CodingKey {
-        case english_name, iso_3166_1
+        case englishName = "english_name"
+        case iso3166 = "iso_3166_1"
     }
 }
-
-

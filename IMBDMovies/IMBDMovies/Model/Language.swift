@@ -10,11 +10,9 @@ import Foundation
 import Unbox
 
 struct Language: Decodable {
-    
-    let iso        : String?
+    let iso: String?
     let englishName: String?
-    let name       : String?
-    
+    let name: String?
 }
 
 extension Language {

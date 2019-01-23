@@ -7,16 +7,14 @@
 //
 
 import Foundation
-import UIKit
 import SDWebImage
+import UIKit
 
 class UpcomingMoviesListTableView: UITableViewController {
-    
     let upcomingMoviesListViewModel = UpcomingMoviesListViewModel()
     let genresListViewModel = GenreListViewModel()
     let searchController = UISearchController(searchResultsController: nil)
     var selectedIndex: IndexPath!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +25,6 @@ class UpcomingMoviesListTableView: UITableViewController {
         genresListViewModel.genresListViewModelDelegate = self
         genresListViewModel.loadGenresList()
         upcomingMoviesListViewModel.getUpcomingMovies()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,14 +34,11 @@ class UpcomingMoviesListTableView: UITableViewController {
             updateMoviesList()
         }
     }
-    
 }
 
-
-//MARK - Delegates and Datasources
+// MARK: - Delegates and Datasources
 
 extension UpcomingMoviesListTableView {
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -58,12 +52,14 @@ extension UpcomingMoviesListTableView {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "movieItemCell", for: indexPath) as! UpcomingMovieItemTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "movieItemCell", for: indexPath) as? UpcomingMovieItemTableViewCell else {
+            return UITableViewCell()
+        }
         cell.movieAverage.text = "\(upcomingMoviesListViewModel.getVoteAvegare(fromMovie: indexPath))"
         cell.movieBackdropPosterImageView.sd_addActivityIndicator()
         cell.movieBackdropPosterImageView.startAnimating()
         cell.movieGenresLabel.text = genresListViewModel.getGenresListString(from: upcomingMoviesListViewModel.getGenreId(fromMovie: indexPath))
-        cell.movieBackdropPosterImageView.sd_setImage(with: URL(string: upcomingMoviesListViewModel.getBackdropPoster(fromMovie: indexPath))) { (image, error, cacheType, url) in
+        cell.movieBackdropPosterImageView.sd_setImage(with: URL(string: upcomingMoviesListViewModel.getBackdropPoster(fromMovie: indexPath))) { image, error, _, _ in
             if error == nil {
                 cell.movieNoPosterImageView.isHidden = true
                 if let unwrappedImage = image {
@@ -81,12 +77,12 @@ extension UpcomingMoviesListTableView {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let currentPage = Int(MementoEnum.current_page_number_value.getValue()) ?? 0
-        let lastPage = Int(MementoEnum.last_page_number_value.getValue()) ?? 0
-        if indexPath.row == upcomingMoviesListViewModel.moviesList.count-1 {
-            if  currentPage <= lastPage  {
+        let currentPage = Int(MementoEnum.currentPageNumberValue.getValue()) ?? 0
+        let lastPage = Int(MementoEnum.lastPageNumberValue.getValue()) ?? 0
+        if indexPath.row == upcomingMoviesListViewModel.moviesList.count - 1 {
+            if currentPage <= lastPage {
                 pleaseWait()
-                MementoEnum.current_page_number_value.setValue(value: String(currentPage + 1))
+                MementoEnum.currentPageNumberValue.setValue(value: String(currentPage + 1))
                 upcomingMoviesListViewModel.getUpcomingMovies()
             }
         }
@@ -99,7 +95,9 @@ extension UpcomingMoviesListTableView {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueDetailMovie" {
-            let movieDetailView = segue.destination as! DetailMovieTableView
+            guard let movieDetailView = segue.destination as? DetailMovieTableView else {
+                return
+            }
             movieDetailView.upcomingMovieListViewModel = upcomingMoviesListViewModel
             movieDetailView.genreListViewModel = genresListViewModel
             movieDetailView.indexPath = selectedIndex
@@ -110,7 +108,6 @@ extension UpcomingMoviesListTableView {
         performSegue(withIdentifier: "segueLanguage", sender: self)
         tableView.isHidden = true
     }
-    
 }
 
 extension UpcomingMoviesListTableView: UpcomingMoviesListViewModelDelegate {
@@ -127,12 +124,11 @@ extension UpcomingMoviesListTableView: UpcomingMoviesListViewModelDelegate {
     }
     
     func searchIsActive() {
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
 }
 
 extension UpcomingMoviesListTableView: GenresListViewModelDelegate {
-    
     func didLoadGenresList() {
         print("Genres Ok")
     }
@@ -140,11 +136,9 @@ extension UpcomingMoviesListTableView: GenresListViewModelDelegate {
     func didNotLoadGenreList(message: String) {
         print("Genres not Ok.")
     }
-    
 }
 
 extension UpcomingMoviesListTableView: UISearchControllerDelegate, UISearchBarDelegate {
-    
     func configureSearchBar() {
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -179,18 +173,17 @@ extension UpcomingMoviesListTableView: UISearchControllerDelegate, UISearchBarDe
 }
 
 extension UpcomingMoviesListTableView {
-    
     @objc
     func updateMoviesList() {
-        self.pleaseWait()
-        MementoEnum.current_page_number_value.setValue(value: String(1))
+        pleaseWait()
+        MementoEnum.currentPageNumberValue.setValue(value: String(1))
         upcomingMoviesListViewModel.getUpcomingMovies()
     }
     
     func addRefreshControl() {
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "Updating movies list", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "Updating movies list", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         tableView.refreshControl?.addTarget(self, action: #selector(updateMoviesList), for: .valueChanged)
     }
 }

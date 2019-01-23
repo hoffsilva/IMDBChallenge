@@ -6,12 +6,9 @@
 //  Copyright © 2019 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-enum UrlsEnum: String, PlistManager {
-    
-    static var plistName = "Urls"
-    
-    case host_themoviedb_web
-    case host_trailer_url
-    case poster_main_url
-    case api_main_url
+enum UrlsEnum {
+    static let hostThemoviedbWeb = "https://www.themoviedb.org/movie/"
+    static let hostTrailerUrl = "https://www.youtube.com/embed/"
+    static let posterMainUrl = "https://image.tmdb.org/t/p/w1280"
+    static let apiMainUrl = "https://api.themoviedb.org/3"
 }

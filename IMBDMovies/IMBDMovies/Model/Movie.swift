@@ -7,22 +7,20 @@
 //
 
 struct Movie: Decodable {
-    
-    let voteCount        : Int!
-    let id                : Int!
-    let video             : Bool!
-    let voteAverage      : Double!
-    let title             : String!
-    let popularity        : Double!
-    let posterPath       : String!
-    let originalLanguage : String!
-    let originalTitle    : String!
-    let genreIds         : [Int]!
-    let backdropPath     : String!
-    let adult             : Bool!
-    let overview          : String!
-    let releaseDate      : String!
-
+    let voteCount: Int!
+    let id: Int!
+    let video: Bool!
+    let voteAverage: Double!
+    let title: String!
+    let popularity: Double!
+    let posterPath: String!
+    let originalLanguage: String!
+    let originalTitle: String!
+    let genreIds: [Int]!
+    let backdropPath: String!
+    let adult: Bool!
+    let overview: String!
+    let releaseDate: String!
 }
 
 extension Movie {

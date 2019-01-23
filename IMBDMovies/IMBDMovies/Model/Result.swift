@@ -7,13 +7,11 @@
 //
 
 struct Result: Decodable {
-    
-    let results       :  [Movie]!
-    let page          :  Int
-    let totalResults  :  Int
-    let dates         :  Dates
-    let totalPages    :  Int
-    
+    let results: [Movie]!
+    let page: Int
+    let totalResults: Int
+    let dates: Dates
+    let totalPages: Int
 }
 
 extension Result {

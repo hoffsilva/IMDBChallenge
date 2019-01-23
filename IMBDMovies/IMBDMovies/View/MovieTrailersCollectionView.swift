@@ -11,7 +11,6 @@ import UIKit
 import WebKit
 
 class MovieTrailersCollectionView: UICollectionViewController {
-    
     let movieTrailerViewModel = MovieTrailerViewModel()
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -23,9 +22,11 @@ class MovieTrailersCollectionView: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieTrailerCell", for: indexPath) as! MovieTrailerCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieTrailerCell", for: indexPath) as? MovieTrailerCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         guard let youtubeURL = URL(string: movieTrailerViewModel.getVideoURL(from: indexPath))
-            else { return UICollectionViewCell() }
+        else { return UICollectionViewCell() }
         cell.movieTrailerWebView.isOpaque = false
         cell.movieTrailerWebView.scrollView.isScrollEnabled = false
         cell.movieTrailerWebView.navigationDelegate = cell
@@ -33,5 +34,4 @@ class MovieTrailersCollectionView: UICollectionViewController {
         cell.movieTrailerWebView.load(URLRequest(url: youtubeURL))
         return cell
     }
-    
 }

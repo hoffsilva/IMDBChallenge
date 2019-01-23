@@ -6,15 +6,14 @@
 //  Copyright © 2019 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-enum EndpointsEnum: String, PlistManager {
-    
+enum EndpointsEnum {
     static let plistName = "Endpoints"
     
-    case get_upcoming_movies
-    case get_search_movie
-    case get_translates
-    case get_countries
-    case get_languages
-    case get_movie_trailer
-    case get_genres_list
+    static let getUpcomingMovies = "/movie/upcoming"
+    static let getSearchMovie = "/search/movie"
+    static let getTranslates = "/configuration/primary_translations"
+    static let getCountries = "/configuration/countries"
+    static let getLanguages = "/configuration/languages"
+    static let getMovieTrailer = "/movie/<MOVIE-ID>/videos"
+    static let getGenresList = "/genre/movie/list"
 }

@@ -9,13 +9,10 @@
 import UIKit
 
 class UpcomingMovieItemTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var movieBackdropPosterImageView: UIImageView!
-    @IBOutlet weak var movieTitle: UILabel!
-    @IBOutlet weak var movieAverage: UILabel!
-    @IBOutlet weak var movieReleaseDate: UILabel!
-    @IBOutlet weak var movieNoPosterImageView: UIImageView!
-    @IBOutlet weak var movieGenresLabel: UILabel!
-    
-    
+    @IBOutlet var movieBackdropPosterImageView: UIImageView!
+    @IBOutlet var movieTitle: UILabel!
+    @IBOutlet var movieAverage: UILabel!
+    @IBOutlet var movieReleaseDate: UILabel!
+    @IBOutlet var movieNoPosterImageView: UIImageView!
+    @IBOutlet var movieGenresLabel: UILabel!
 }

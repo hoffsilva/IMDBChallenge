@@ -10,10 +10,8 @@
 import Foundation
 
 struct Translation {
-    
     var language: String?
-    var name    : String?
-    var code    : String!
-    var country : String?
-    
+    var name: String?
+    var code: String!
+    var country: String?
 }

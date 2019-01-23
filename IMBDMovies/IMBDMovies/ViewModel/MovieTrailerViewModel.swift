@@ -15,13 +15,12 @@ protocol MovieTrailerViewModelDelegate {
 }
 
 class MovieTrailerViewModel {
-    
     var movieTrailerViewModelDelegate: MovieTrailerViewModelDelegate!
     
     var movieTrailers = [MovieTrailer]()
     
     func loadTrailers(from movieID: Int) {
-        ServiceRequest.fetchData(endPointURL: Memento.movieTrailersURL(from: movieID)) { (result) in
+        ServiceRequest.fetchData(endPointURL: Memento.movieTrailersURL(from: movieID)) { result in
             
             guard let movieTrailer = result else {
                 return
@@ -34,7 +33,7 @@ class MovieTrailerViewModel {
             } catch {}
             
             do {
-                let resultMovieTrailers : ResultsMovieTrailer = try JSONDecoder().decode(ResultsMovieTrailer.self, from: movieTrailer)
+                let resultMovieTrailers: ResultsMovieTrailer = try JSONDecoder().decode(ResultsMovieTrailer.self, from: movieTrailer)
                 self.movieTrailers = resultMovieTrailers.results
                 self.movieTrailerViewModelDelegate.trailersLoaded()
             } catch {
@@ -45,6 +44,6 @@ class MovieTrailerViewModel {
     }
     
     func getVideoURL(from video: IndexPath) -> String {
-        return UrlsEnum.host_trailer_url.getValue() + String( movieTrailers[video.row].key)
+        return UrlsEnum.hostTrailerUrl.getValue() + String(movieTrailers[video.row].key)
     }
 }

@@ -41,12 +41,9 @@
 		7842DEC5215CC77DB6BFBB62 /* Pods_IMBDMoviesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269091960ECA86109FF36B5E /* Pods_IMBDMoviesTests.framework */; };
 		7CB5F4EFC4A0E6BE8B9DCFD1 /* Pods_IMBDMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7214DA7403B0F348EA7674 /* Pods_IMBDMovies.framework */; };
 		B0E1D3E6B4CB7DBE4199ECD1 /* Pods_IMBDMoviesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12402BF012D3FB7A3AA2F7C /* Pods_IMBDMoviesUITests.framework */; };
-		C32A557D21E5081A0018EB68 /* Parameters.plist in Resources */ = {isa = PBXBuildFile; fileRef = C32A557C21E5081A0018EB68 /* Parameters.plist */; };
-		C32A557F21E510D10018EB68 /* Urls.plist in Resources */ = {isa = PBXBuildFile; fileRef = C32A557E21E510D10018EB68 /* Urls.plist */; };
-		C32A558121E5111B0018EB68 /* Endpoints.plist in Resources */ = {isa = PBXBuildFile; fileRef = C32A558021E5111B0018EB68 /* Endpoints.plist */; };
 		C32A558321E512E90018EB68 /* Memento.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A558221E512E90018EB68 /* Memento.swift */; };
 		C32A558521E513420018EB68 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A558421E513420018EB68 /* Extensions.swift */; };
-		C32A558721E51F0F0018EB68 /* PlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A558621E51F0F0018EB68 /* PlistManager.swift */; };
+		C32A558721E51F0F0018EB68 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A558621E51F0F0018EB68 /* UserDefaultManager.swift */; };
 		C32A558921E542790018EB68 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A558821E542790018EB68 /* Parameters.swift */; };
 		C32A558B21E542900018EB68 /* EndpointsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A558A21E542900018EB68 /* EndpointsEnum.swift */; };
 		C32A558D21E542A10018EB68 /* UrlsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A558C21E542A10018EB68 /* UrlsEnum.swift */; };
@@ -115,12 +112,9 @@
 		5E7214DA7403B0F348EA7674 /* Pods_IMBDMovies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMBDMovies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0FB1A1E6D24AA24E82C8E8B /* Pods-IMBDMoviesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMBDMoviesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IMBDMoviesTests/Pods-IMBDMoviesTests.release.xcconfig"; sourceTree = "<group>"; };
 		B12402BF012D3FB7A3AA2F7C /* Pods_IMBDMoviesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMBDMoviesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C32A557C21E5081A0018EB68 /* Parameters.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Parameters.plist; sourceTree = "<group>"; };
-		C32A557E21E510D10018EB68 /* Urls.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Urls.plist; sourceTree = "<group>"; };
-		C32A558021E5111B0018EB68 /* Endpoints.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Endpoints.plist; sourceTree = "<group>"; };
 		C32A558221E512E90018EB68 /* Memento.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memento.swift; sourceTree = "<group>"; };
 		C32A558421E513420018EB68 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		C32A558621E51F0F0018EB68 /* PlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistManager.swift; sourceTree = "<group>"; };
+		C32A558621E51F0F0018EB68 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		C32A558821E542790018EB68 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
 		C32A558A21E542900018EB68 /* EndpointsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointsEnum.swift; sourceTree = "<group>"; };
 		C32A558C21E542A10018EB68 /* UrlsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlsEnum.swift; sourceTree = "<group>"; };
@@ -166,16 +160,13 @@
 		0BA19EBB21B17F3600A1A4D1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				C32A558021E5111B0018EB68 /* Endpoints.plist */,
 				C32A558A21E542900018EB68 /* EndpointsEnum.swift */,
 				C32A558421E513420018EB68 /* Extensions.swift */,
 				0BBFEB2721B590FE009F552C /* Memento.plist */,
 				C32A558221E512E90018EB68 /* Memento.swift */,
-				C32A557C21E5081A0018EB68 /* Parameters.plist */,
 				C32A558821E542790018EB68 /* Parameters.swift */,
-				C32A558621E51F0F0018EB68 /* PlistManager.swift */,
+				C32A558621E51F0F0018EB68 /* UserDefaultManager.swift */,
 				0BD6EE0C21B33FDD0078E178 /* SwiftNotice.swift */,
-				C32A557E21E510D10018EB68 /* Urls.plist */,
 				C32A558C21E542A10018EB68 /* UrlsEnum.swift */,
 			);
 			path = Settings;
@@ -412,10 +403,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C32A557F21E510D10018EB68 /* Urls.plist in Resources */,
 				0BBFEB2821B590FF009F552C /* Memento.plist in Resources */,
-				C32A557D21E5081A0018EB68 /* Parameters.plist in Resources */,
-				C32A558121E5111B0018EB68 /* Endpoints.plist in Resources */,
 				0BA1CB5021B15DC200D14013 /* LaunchScreen.storyboard in Resources */,
 				0BA1CB4D21B15DC200D14013 /* Assets.xcassets in Resources */,
 				0BA1CB4B21B15DC200D14013 /* Main.storyboard in Resources */,
@@ -533,7 +521,7 @@
 				0BD6EE1F21B445690078E178 /* LanguageTableViewCell.swift in Sources */,
 				0BD6EE0421B23D9E0078E178 /* UpcomingMoviesListViewModel.swift in Sources */,
 				0BA19EB821B1772C00A1A4D1 /* Dates.swift in Sources */,
-				C32A558721E51F0F0018EB68 /* PlistManager.swift in Sources */,
+				C32A558721E51F0F0018EB68 /* UserDefaultManager.swift in Sources */,
 				0BD6EE4321B46ED10078E178 /* MovieTrailerViewModel.swift in Sources */,
 				0BD6EE4721B47FA20078E178 /* MovieTrailerCollectionViewCell.swift in Sources */,
 				0B4CF3ED21B6E90400129988 /* GenresList.swift in Sources */,

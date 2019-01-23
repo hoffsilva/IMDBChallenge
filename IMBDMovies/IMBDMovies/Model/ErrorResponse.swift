@@ -10,10 +10,8 @@ import Foundation
 import Unbox
 
 struct ErrorResponse: Decodable {
-    
-    let statusCode   : Int
+    let statusCode: Int
     let statusMessage: String
-    
 }
 
 extension ErrorResponse {

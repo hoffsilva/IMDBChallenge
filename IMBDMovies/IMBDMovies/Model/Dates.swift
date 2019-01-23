@@ -9,7 +9,7 @@
 struct Dates: Decodable {
     let maximum: String?
     let minimum: String?
-    
+
     init(maximum: String, minimum: String) {
         self.maximum = maximum
         self.minimum = minimum
@@ -21,4 +21,3 @@ extension Dates {
         case maximum, minimum
     }
 }
-
