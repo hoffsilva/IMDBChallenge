@@ -4,14 +4,12 @@ PODS:
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
-  - SwiftyPlistManager (1.0.2)
   - Unbox (3.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - FCAlertView
   - SDWebImage (~> 4.0)
-  - SwiftyPlistManager
   - Unbox
 
 SPEC REPOS:
@@ -19,16 +17,14 @@ SPEC REPOS:
     - Alamofire
     - FCAlertView
     - SDWebImage
-    - SwiftyPlistManager
     - Unbox
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   FCAlertView: fdddd63381898c1d1a5a20c9f084fbd2c6d12f8b
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
-  SwiftyPlistManager: 5895924cccb7fe28deccbe14890e8aed78ae78ae
   Unbox: 9ed33b2a31f7a8a049f54b94d40c4a52a28c4d9d
 
-PODFILE CHECKSUM: 79713ee8c59131dd0a34b044e62c421125bf9217
+PODFILE CHECKSUM: baad72749a49612d04da04828e225b95e5418bc7
 
 COCOAPODS: 1.5.3

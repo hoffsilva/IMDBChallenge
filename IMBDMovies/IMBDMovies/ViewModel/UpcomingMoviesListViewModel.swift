@@ -27,12 +27,12 @@ class UpcomingMoviesListViewModel {
     var tempMoviesList = [Movie]()
     
     func isLanguangeChanged() -> Bool {
-        return ConstantsUtil.isLanguageChanged()
+        return !MementoEnum.language_changed.getValue().isEmpty
     }
     
     func  getUpcomingMovies() {
-        fetchDataFromTMDB(by: ConstantsUtil.upcomingMoviesURL())
-        ConstantsUtil.setLanguageChanged(value: "*")
+        fetchDataFromTMDB(by: Memento.upcomingMoviesURL())
+        MementoEnum.language_changed.setValue(value: "*")
     }
     
     func searchMovie(by searchParameter: String) {
@@ -48,13 +48,13 @@ class UpcomingMoviesListViewModel {
             self.upcomingMoviesListViewModelDelegate?.didLoadMoviesList()
         } else {
             formatSearchParam(value: searchParameter)
-            fetchDataFromTMDB(by: ConstantsUtil.searchMoviesURL())
+            fetchDataFromTMDB(by: Memento.searchMoviesURL())
         }
     }
     
     private func formatSearchParam(value: String) {
         let formattedValue = value.replacingOccurrences(of: " ", with: "%20")
-        ConstantsUtil.setQueryValue(value: formattedValue)
+        MementoEnum.query_value.setValue(value: formattedValue)
     }
     
     
@@ -80,19 +80,22 @@ class UpcomingMoviesListViewModel {
                     self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: "Could not load movie data.")
                     return
                 }
-                ConstantsUtil.setCurrentPageNumber(currentPageNumber: currentPageNumber)
+                MementoEnum.current_page_number_value.setValue(value: String(currentPageNumber))
                 
                 guard let lastPageNumber = results.total_pages else {
                     self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: "Could not load movie data.")
                     return
                 }
-                ConstantsUtil.setLastPageNumber(lastPageNumber: lastPageNumber)
+                MementoEnum.last_page_number_value.setValue(value: String(lastPageNumber))
                 
                 guard let movies = results.results else {
                     self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: "Could not load movie data.")
                     return
                 }
-                if ConstantsUtil.getCurrentPageNumber() == 1 {
+                
+                let cp = Int(MementoEnum.current_page_number_value.getValue()) ?? 0
+                
+                if cp == 1 {
                     self.moviesList.removeAll()
                 }
                 for movie in movies {
@@ -114,7 +117,7 @@ class UpcomingMoviesListViewModel {
     
     private func getPosterUrl(poster_path: String?) -> String {
         if let poster = poster_path {
-           return ConstantsUtil.getPosterMainUrl() + poster
+           return UrlsEnum.poster_main_url.getValue() + poster
         } else {
             return ""
         }
