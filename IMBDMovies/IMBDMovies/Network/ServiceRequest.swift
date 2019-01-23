@@ -11,25 +11,21 @@ import Alamofire
 import Unbox
 import FCAlertView
 
-typealias obj = (Any?) -> Swift.Void
+typealias obj = (Data?) -> Swift.Void
 
 struct ServiceRequest {
     
     fileprivate static var isConnected = true
     
+
+    
     static func fetchData(endPointURL: String, responseJSON: @escaping obj) {
         if isConnected {
             Alamofire.request(endPointURL.trimmingCharacters(in: .whitespaces)).responseJSON { (response) in
-                if let pt = response.value as? Array<String>{
+                if let pt = response.data{
                     responseJSON(pt)
                     return
                 }
-                
-                if let countries = response.value as? Array<UnboxableDictionary> {
-                    responseJSON(countries)
-                    return
-                }
-                responseJSON(response.value as? UnboxableDictionary)
             }
         } else {
             responseJSON(nil)

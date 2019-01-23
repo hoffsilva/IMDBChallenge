@@ -8,7 +8,7 @@
 
 enum EndpointsEnum: String, PlistManager {
     
-    static var plistName = "Endpoints"
+    static let plistName = "Endpoints"
     
     case get_upcoming_movies
     case get_search_movie

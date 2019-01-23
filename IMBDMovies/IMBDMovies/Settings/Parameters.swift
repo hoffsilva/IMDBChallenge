@@ -8,7 +8,7 @@
 
 enum ParametersEnum: String,  PlistManager {
     
-    static var plistName = "Parameters"
+    static let plistName = "Parameters"
     
     case include_adult_param
     case query_param

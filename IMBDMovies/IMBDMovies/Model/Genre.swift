@@ -7,18 +7,14 @@
 //
 
 import Foundation
-import Unbox
 
-struct Genre {
-    let id   : Int?
-    let name : String?
+struct Genre: Decodable {
+    let id   : Int
+    let name : String
 }
 
-extension Genre: Unboxable {
-    
-    init(unboxer: Unboxer) throws {
-        self.id   = try? unboxer.unbox(key: "id")
-        self.name = try? unboxer.unbox(key: "name")
+extension Genre {
+    enum CodingKeys: String, CodingKey {
+        case id, name
     }
-    
 }

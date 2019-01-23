@@ -29,44 +29,36 @@ class LanguageViewModel {
     
     var translations = [Translation]()
     
-    private func treatResponse(result: Any?) {
+    @discardableResult private func treatResponse(result: Data?) -> Data {
         
-        guard let resultFromApi = result as? UnboxableDictionary else {
+        guard let resultFromApi = result else {
             self.langaugeViewModelDelegate?.didNotLoadLanguages(message: "The movie database is not available.")
-            return
+            return Data()
         }
         
         do {
-            let error: ErrorResponse = try unbox(dictionary: resultFromApi)
-            self.langaugeViewModelDelegate?.didNotLoadLanguages(message: error.status_message)
-            return
+            let error: ErrorResponse = try JSONDecoder().decode(ErrorResponse.self, from: resultFromApi)
+            self.langaugeViewModelDelegate?.didNotLoadLanguages(message: error.statusMessage)
+            return Data()
         } catch {
             print(error.localizedDescription)
-            return
+            return resultFromApi
         }
+        
     }
     
     func getPrimaryTranslations() {
         ServiceRequest.fetchData(endPointURL: Memento.primaryTranslationsURL()) { (result) in
-        
-            if let resultFromApi = result as? UnboxableDictionary {
-                
-                do {
-                    let error: ErrorResponse = try unbox(dictionary: resultFromApi)
-                    self.langaugeViewModelDelegate?.didNotLoadLanguages(message: error.status_message)
-                    return
-                } catch {
-                    print(error.localizedDescription)
-                    return
-                }
-        
-            } else if let array = result as? Array<String> {
-                self.primaryTranslations = array
-                self.langaugeViewModelDelegate?.didLoadPrimaryTranslations()
-            } else {
-                self.langaugeViewModelDelegate?.didNotLoadLanguages(message: "The movie database is not available.")
-                return
+            
+            let data = self.treatResponse(result: result)
+            let str = String(decoding: data, as: UTF8.self)
+            let arrayOfStrings = str.split(separator: ",").map {
+                $0.replacingOccurrences(of: "[", with: "")
+                    .replacingOccurrences(of: "\"", with: "")
+                    .replacingOccurrences(of: "]", with: "")
             }
+            self.primaryTranslations = arrayOfStrings
+            self.langaugeViewModelDelegate?.didLoadPrimaryTranslations()
             
         }
     }
@@ -74,10 +66,10 @@ class LanguageViewModel {
     func getCountries() {
         ServiceRequest.fetchData(endPointURL: Memento.countriesURL()) { (result) in
             
-           self.treatResponse(result: result)
+            let countriesData = self.treatResponse(result: result)
             
             do {
-                let countries : [Country] = try unbox(dictionaries: result as! [UnboxableDictionary])
+                let countries : [Country] = try JSONDecoder().decode([Country].self, from: countriesData)
                 self.contries = countries
                 self.langaugeViewModelDelegate?.didLoadCountries()
             } catch {
@@ -90,10 +82,10 @@ class LanguageViewModel {
     func getLanguages() {
         ServiceRequest.fetchData(endPointURL: Memento.languagesURL()) { (result) in
             
-            self.treatResponse(result: result)
+            let languageData = self.treatResponse(result: result)
             
             do {
-                let languages : [Language] = try unbox(dictionaries: result as! [UnboxableDictionary])
+                let languages : [Language] = try JSONDecoder().decode([Language].self, from: languageData)
                 self.languages = languages
                 self.langaugeViewModelDelegate?.didLoadLanguages()
             } catch {
@@ -105,20 +97,20 @@ class LanguageViewModel {
     
     func getTranslations() {
         for primary_translation in primaryTranslations {
-            var translation = Translation(language: "", name: "", code: "", country: "")
+            var translation = Translation()
             let countryString   = String(describing: primary_translation.suffix(2))
             let lang      = String(describing: primary_translation.prefix(2))
             for language in languages {
-                if language.iso_639_1 == lang {
-                    translation.name     = language.name ?? language.english_name ?? ""
-                    translation.language = language.iso_639_1 ?? ""
-                    translation.code = language.iso_639_1 ?? ""
+                if language.iso == lang {
+                    translation.name     = language.name ?? language.englishName ?? ""
+                    translation.language = language.iso ?? ""
+                    translation.code = language.iso ?? ""
                 }
             }
             for country in contries {
                 if country.iso_3166_1 == countryString {
-                    translation.country = country.english_name ?? ""
-                    translation.code.append("-\(country.iso_3166_1 ?? "")")
+                    translation.country = country.english_name
+                    translation.code.append("-\(country.iso_3166_1)")
                 }
             }
             print(translation)
@@ -132,15 +124,15 @@ class LanguageViewModel {
     }
     
     func getTranslationName(by indexPath: IndexPath) -> String {
-        return getTranslation(by: indexPath).name
+        return getTranslation(by: indexPath).name ?? "No Name"
     }
     
     func getTranslationCountry(by indexPath: IndexPath) -> String {
-        return getTranslation(by: indexPath).country
+        return getTranslation(by: indexPath).country ?? "No Name"
     }
     
     func setDefaulTranslation(by indexPath: IndexPath) {
-        MementoEnum.language_param_value.setValue(value: getTranslation(by: indexPath).code)
+        MementoEnum.language_param_value.setValue(value: getTranslation(by: indexPath).code ?? "No name")
         MementoEnum.language_changed.setValue(value: "")
     }
     
@@ -155,7 +147,7 @@ class LanguageViewModel {
     func isLanguageChanged() -> Bool {
         return !MementoEnum.language_changed.getValue().isEmpty
     }
-
+    
 }
 
 
