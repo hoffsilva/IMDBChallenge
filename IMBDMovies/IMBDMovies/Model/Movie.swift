@@ -24,7 +24,7 @@ struct Movie: Decodable {
 }
 
 extension Movie {
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id, video, title, popularity, adult, overview
         case voteCount = "vote_count"
         case voteAverage = "vote_average"

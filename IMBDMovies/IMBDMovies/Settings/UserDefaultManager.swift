@@ -9,14 +9,14 @@
 import Foundation
 
 enum UserDefaultManager {
-    func get(valueFrom key: String) -> String {
+    static func get(valueFrom key: String) -> String {
         guard let valueFromKey = UserDefaults.standard.string(forKey: key) else {
             return ""
         }
         return valueFromKey
     }
 
-    func set(value: String, key: String) {
+    static func set(value: String, key: String) {
         UserDefaults.standard.set(value, forKey: key)
     }
 }

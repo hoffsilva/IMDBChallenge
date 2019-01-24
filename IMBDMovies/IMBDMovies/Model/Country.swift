@@ -6,16 +6,14 @@
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-import Foundation
-
 struct Country: Decodable {
-    let iso3166: String
     let englishName: String
+    let iso: String
 }
 
 extension Country {
-    enum CondingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case englishName = "english_name"
-        case iso3166 = "iso_3166_1"
+        case iso = "iso_3166_1"
     }
 }

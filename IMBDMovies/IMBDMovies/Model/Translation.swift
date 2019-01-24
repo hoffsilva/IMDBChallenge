@@ -7,8 +7,6 @@
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-import Foundation
-
 struct Translation {
     var language: String?
     var name: String?

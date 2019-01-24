@@ -17,7 +17,7 @@ struct Dates: Decodable {
 }
 
 extension Dates {
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case maximum, minimum
     }
 }

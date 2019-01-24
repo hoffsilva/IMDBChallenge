@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        UserDefaultManager.set(value: "edacb7eeacf9c2be67d32057dc199a0f", key: UserDefaults.Keys.apiKeyParamValue)
         return true
     }
 

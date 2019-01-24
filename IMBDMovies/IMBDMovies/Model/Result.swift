@@ -15,7 +15,7 @@ struct Result: Decodable {
 }
 
 extension Result {
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case results, page, dates
         case totalPages = "total_pages"
         case totalResults = "total_results"

@@ -6,14 +6,12 @@
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-import Foundation
-
 struct GenresList: Decodable {
     let genres: [Genre]?
 }
 
 extension GenresList {
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case genres
     }
 }

@@ -44,6 +44,6 @@ class MovieTrailerViewModel {
     }
     
     func getVideoURL(from video: IndexPath) -> String {
-        return UrlsEnum.hostTrailerUrl.getValue() + String(movieTrailers[video.row].key)
+        return UrlsEnum.hostTrailerUrl + String(movieTrailers[video.row].key)
     }
 }

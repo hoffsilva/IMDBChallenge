@@ -77,12 +77,16 @@ extension UpcomingMoviesListTableView {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let currentPage = Int(MementoEnum.currentPageNumberValue.getValue()) ?? 0
-        let lastPage = Int(MementoEnum.lastPageNumberValue.getValue()) ?? 0
+        guard let currentPage = Int(UserDefaultManager.get(valueFrom: UserDefaults.Keys.currentPageNumberValue)) else {
+            return
+        }
+        guard let lastPage = Int(UserDefaultManager.get(valueFrom: UserDefaults.Keys.lastPageNumberValue)) else {
+            return
+        }
         if indexPath.row == upcomingMoviesListViewModel.moviesList.count - 1 {
             if currentPage <= lastPage {
                 pleaseWait()
-                MementoEnum.currentPageNumberValue.setValue(value: String(currentPage + 1))
+                UserDefaultManager.set(value: String(currentPage + 1), key: UserDefaults.Keys.currentPageNumberValue)
                 upcomingMoviesListViewModel.getUpcomingMovies()
             }
         }
@@ -176,7 +180,7 @@ extension UpcomingMoviesListTableView {
     @objc
     func updateMoviesList() {
         pleaseWait()
-        MementoEnum.currentPageNumberValue.setValue(value: String(1))
+        UserDefaultManager.set(value: String(1), key: UserDefaults.Keys.currentPageNumberValue)
         upcomingMoviesListViewModel.getUpcomingMovies()
     }
     

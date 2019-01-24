@@ -1,12 +1,12 @@
 //
-import Foundation
 //  UpcomingMoviesListViewModel.swift
 //  IMBDMovies
 //
 //  Created by Hoff Henry Pereira da Silva on 01/12/2018.
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
-import Unbox
+
+import Foundation
 
 protocol UpcomingMoviesListViewModelDelegate {
     func didLoadMoviesList()
@@ -22,12 +22,12 @@ class UpcomingMoviesListViewModel {
     var tempMoviesList = [Movie]()
     
     func isLanguangeChanged() -> Bool {
-        return !MementoEnum.languageChanged.getValue().isEmpty
+        return !UserDefaultManager.get(valueFrom: UserDefaults.Keys.languageChanged).isEmpty
     }
     
     func getUpcomingMovies() {
         fetchDataFromTMDB(by: Memento.upcomingMoviesURL())
-        MementoEnum.languageChanged.setValue(value: "*")
+        UserDefaultManager.set(value: "*", key: UserDefaults.Keys.languageChanged)
     }
     
     func searchMovie(by searchParameter: String) {
@@ -49,7 +49,7 @@ class UpcomingMoviesListViewModel {
     
     private func formatSearchParam(value: String) {
         let formattedValue = value.replacingOccurrences(of: " ", with: "%20")
-        MementoEnum.queryValue.setValue(value: formattedValue)
+        UserDefaultManager.set(value: formattedValue, key: UserDefaults.Keys.queryValue)
     }
     
     private func fetchDataFromTMDB(by url: String) {
@@ -60,19 +60,15 @@ class UpcomingMoviesListViewModel {
                 return
             }
             
-            //            do {
-            //                let error: ErrorResponse = try unbox(dictionary: movieData as! UnboxableDictionary)
-            //                self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: error.status_message)
-            //                return
-            //            } catch {}
-            //
             do {
                 let results = try JSONDecoder().decode(Result.self, from: movieData)
                 
-                MementoEnum.currentPageNumberValue.setValue(value: String(results.page))
-                MementoEnum.lastPageNumberValue.setValue(value: String(results.totalPages))
+                UserDefaultManager.set(value: String(results.page), key: UserDefaults.Keys.currentPageNumberValue)
+                UserDefaultManager.set(value: String(results.totalPages), key: UserDefaults.Keys.lastPageNumberValue)
                 
-                let cp = Int(MementoEnum.currentPageNumberValue.getValue()) ?? 0
+                guard let cp = Int(UserDefaultManager.get(valueFrom: UserDefaults.Keys.currentPageNumberValue)) else {
+                    return
+                }
                 
                 if cp == 1 {
                     self.moviesList.removeAll()
@@ -96,7 +92,7 @@ class UpcomingMoviesListViewModel {
     
     private func getPosterUrl(posterPath: String?) -> String {
         if let poster = posterPath {
-            return UrlsEnum.posterMainUrl.getValue() + poster
+            return UrlsEnum.posterMainUrl + poster
         } else {
             return ""
         }

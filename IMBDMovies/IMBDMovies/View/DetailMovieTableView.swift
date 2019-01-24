@@ -75,7 +75,7 @@ class DetailMovieTableView: UITableViewController {
     @objc
     func shareMovie() {
         let message: String = " 🍿🥤 🍿🥤 Hello! I liked this movie. Would you like to watch it with me?. 🎟 🎟"
-        let objectsToShare = URL(string: UrlsEnum.hostThemoviedbWeb.getValue() + String(upcomingMovieListViewModel.getMovieId(fromMovie: indexPath)))
+        let objectsToShare = URL(string: UrlsEnum.hostThemoviedbWeb + String(upcomingMovieListViewModel.getMovieId(fromMovie: indexPath)))
         let sharedObjects: [AnyObject] = [objectsToShare as AnyObject, message as AnyObject]
         let activityViewController = UIActivityViewController(activityItems: sharedObjects, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = view

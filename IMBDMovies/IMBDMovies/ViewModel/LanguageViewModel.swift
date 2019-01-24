@@ -104,9 +104,9 @@ class LanguageViewModel {
                 }
             }
             for country in contries {
-                if country.iso3166 == countryString {
+                if country.iso == countryString {
                     translation.country = country.englishName
-                    translation.code.append("-\(country.iso3166)")
+                    translation.code.append("-\(country.iso)")
                 }
             }
             print(translation)
@@ -128,12 +128,15 @@ class LanguageViewModel {
     }
     
     func setDefaulTranslation(by indexPath: IndexPath) {
-        MementoEnum.languageParamValue.setValue(value: getTranslation(by: indexPath).code ?? "No name")
-        MementoEnum.languageChanged.setValue(value: "")
+        guard let translationCode = getTranslation(by: indexPath).code else {
+            return
+        }
+        UserDefaultManager.set(value: translationCode, key: UserDefaults.Keys.languageParamValue)
+        UserDefaultManager.set(value: "*", key: UserDefaults.Keys.languageChanged)
     }
     
     func selectedLanguage() -> String {
-        return MementoEnum.languageParamValue.getValue()
+        return UserDefaultManager.get(valueFrom: UserDefaults.Keys.languageParamValue)
     }
     
     func isSelectedLanguage(by indexPath: IndexPath) -> Bool {
@@ -141,6 +144,6 @@ class LanguageViewModel {
     }
     
     func isLanguageChanged() -> Bool {
-        return !MementoEnum.languageChanged.getValue().isEmpty
+        return !UserDefaultManager.get(valueFrom: UserDefaults.Keys.languageChanged).isEmpty
     }
 }
