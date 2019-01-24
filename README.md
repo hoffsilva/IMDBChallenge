@@ -41,10 +41,6 @@ should follow:
 
 * [Alamofire](https://github.com/Alamofire/Alamofire), I used Alamofire because it became the HTTP Requests manager easy.
 
-### Unbox
-
-* [Unbox](https://github.com/JohnSundell/Unbox), I used Unbox to help me work easily with JSON Objects.
-
 ### SDWebImage
 
 * [SDWebImage](https://github.com/rs/SDWebImage), I used SDWebImage to do image cache.
