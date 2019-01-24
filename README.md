@@ -53,9 +53,5 @@ should follow:
 
 * [FCAlertView](https://github.com/nimati/FCAlertView), I used FCAlertView to show alert with internet connection error message for users.
 
-### FCAlertView
-
-* [SwiftyPlistManager](https://github.com/rebeloper/SwiftyPlistManager), I used SwiftyPlistManager to help me work quickly with plist persistence.
-
 
    
