@@ -15,13 +15,12 @@ protocol GenresListViewModelDelegate {
 }
 
 class GenreListViewModel {
-    
     var genresListViewModelDelegate: GenresListViewModelDelegate!
     
     var genresList = [Genre]()
     
     func loadGenresList() {
-        ServiceRequest.fetchData(endPointURL: Memento.genresListURL()) { (result) in
+        ServiceRequest.fetchData(endPointURL: Memento.genresListURL()) { result in
             guard let unwrappedResult = result else {
                 return
             }
@@ -33,7 +32,7 @@ class GenreListViewModel {
             } catch {}
             
             do {
-                let genresList : GenresList = try JSONDecoder().decode(GenresList.self, from: unwrappedResult)
+                let genresList: GenresList = try JSONDecoder().decode(GenresList.self, from: unwrappedResult)
                 guard let unwrappedGenresList = genresList.genres else {
                     return
                 }
@@ -50,7 +49,7 @@ class GenreListViewModel {
         var genresListString = ""
         for genreID in genresListID {
             for genre in genresList {
-                if genreID == (genre.id ) {
+                if genreID == (genre.id) {
                     genresListString += "\(genre.name), "
                 }
             }
@@ -62,5 +61,4 @@ class GenreListViewModel {
         }
         return genresListString
     }
-    
 }

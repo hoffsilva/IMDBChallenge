@@ -6,15 +6,13 @@
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-import Foundation
-
 struct Genre: Decodable {
-    let id   : Int
-    let name : String
+    let id: Int
+    let name: String
 }
 
 extension Genre {
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id, name
     }
 }

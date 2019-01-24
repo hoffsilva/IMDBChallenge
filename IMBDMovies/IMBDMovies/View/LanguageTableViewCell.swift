@@ -10,7 +10,5 @@ import Foundation
 import UIKit
 
 class LanguageTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var languageLabel: UILabel!
-    
+    @IBOutlet var languageLabel: UILabel!
 }

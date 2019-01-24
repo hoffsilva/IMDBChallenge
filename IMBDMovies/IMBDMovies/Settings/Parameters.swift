@@ -6,13 +6,10 @@
 //  Copyright © 2019 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-enum ParametersEnum: String,  PlistManager {
-    
-    static let plistName = "Parameters"
-    
-    case include_adult_param
-    case query_param
-    case api_key_param
-    case page_param
-    case language_param
+enum ParametersEnum {
+    static let includeAdultParam = "&include_adult="
+    static let queryParam = "&query="
+    static let apiKeyParam = "?api_key="
+    static let pageParam = "&page="
+    static let languageParam = "&language="
 }

@@ -5,9 +5,8 @@
 //  Created by Hoff Henry Pereira da Silva on 01/12/2018.
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
-import Unbox
-import Foundation
 
+import Foundation
 
 protocol UpcomingMoviesListViewModelDelegate {
     func didLoadMoviesList()
@@ -15,11 +14,7 @@ protocol UpcomingMoviesListViewModelDelegate {
     func searchIsActive()
 }
 
-
-
-
 class UpcomingMoviesListViewModel {
-    
     var upcomingMoviesListViewModelDelegate: UpcomingMoviesListViewModelDelegate?
     
     var moviesList = [Movie]()
@@ -27,25 +22,25 @@ class UpcomingMoviesListViewModel {
     var tempMoviesList = [Movie]()
     
     func isLanguangeChanged() -> Bool {
-        return !MementoEnum.language_changed.getValue().isEmpty
+        return !UserDefaultManager.get(valueFrom: UserDefaults.Keys.languageChanged).isEmpty
     }
     
-    func  getUpcomingMovies() {
+    func getUpcomingMovies() {
         fetchDataFromTMDB(by: Memento.upcomingMoviesURL())
-        MementoEnum.language_changed.setValue(value: "*")
+        UserDefaultManager.set(value: "*", key: UserDefaults.Keys.languageChanged)
     }
     
     func searchMovie(by searchParameter: String) {
         tempMoviesList = moviesList
         moviesList.removeAll()
-        self.upcomingMoviesListViewModelDelegate?.searchIsActive()
+        upcomingMoviesListViewModelDelegate?.searchIsActive()
         for movie in tempMoviesList {
             if movie.overview.contains(searchParameter) || movie.title.contains(searchParameter) {
                 moviesList.append(movie)
             }
         }
         if moviesList.count > 0 {
-            self.upcomingMoviesListViewModelDelegate?.didLoadMoviesList()
+            upcomingMoviesListViewModelDelegate?.didLoadMoviesList()
         } else {
             formatSearchParam(value: searchParameter)
             fetchDataFromTMDB(by: Memento.searchMoviesURL())
@@ -54,34 +49,26 @@ class UpcomingMoviesListViewModel {
     
     private func formatSearchParam(value: String) {
         let formattedValue = value.replacingOccurrences(of: " ", with: "%20")
-        MementoEnum.query_value.setValue(value: formattedValue)
+        UserDefaultManager.set(value: formattedValue, key: UserDefaults.Keys.queryValue)
     }
     
-    
     private func fetchDataFromTMDB(by url: String) {
-        
-        ServiceRequest.fetchData(endPointURL: url) { (result) in
+        ServiceRequest.fetchData(endPointURL: url) { result in
             
             guard let movieData = result else {
                 self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: "The movie database is not available.")
                 return
             }
             
-            //            do {
-            //                let error: ErrorResponse = try unbox(dictionary: movieData as! UnboxableDictionary)
-            //                self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: error.status_message)
-            //                return
-            //            } catch {}
-            //
             do {
+                let results = try JSONDecoder().decode(Result.self, from: movieData)
                 
-                let results = try JSONDecoder().decode(Result.self, from: movieData as! Data)
+                UserDefaultManager.set(value: String(results.page), key: UserDefaults.Keys.currentPageNumberValue)
+                UserDefaultManager.set(value: String(results.totalPages), key: UserDefaults.Keys.lastPageNumberValue)
                 
-                MementoEnum.current_page_number_value.setValue(value: String(results.page))
-                MementoEnum.last_page_number_value.setValue(value: String(results.totalPages))
-                
-                
-                let cp = Int(MementoEnum.current_page_number_value.getValue()) ?? 0
+                guard let cp = Int(UserDefaultManager.get(valueFrom: UserDefaults.Keys.currentPageNumberValue)) else {
+                    return
+                }
                 
                 if cp == 1 {
                     self.moviesList.removeAll()
@@ -103,9 +90,9 @@ class UpcomingMoviesListViewModel {
         return moviesList[indexPath.row]
     }
     
-    private func getPosterUrl(poster_path: String?) -> String {
-        if let poster = poster_path {
-            return UrlsEnum.poster_main_url.getValue() + poster
+    private func getPosterUrl(posterPath: String?) -> String {
+        if let poster = posterPath {
+            return UrlsEnum.posterMainUrl + poster
         } else {
             return ""
         }
@@ -127,7 +114,7 @@ class UpcomingMoviesListViewModel {
     }
     
     func getPoster(fromMovie atIndexpath: IndexPath) -> String {
-        return unwrapValue(value: getPosterUrl(poster_path: getMovie(from: atIndexpath).posterPath))
+        return unwrapValue(value: getPosterUrl(posterPath: getMovie(from: atIndexpath).posterPath))
     }
     
     func getGenreId(fromMovie atIndexpath: IndexPath) -> [Int] {
@@ -135,7 +122,7 @@ class UpcomingMoviesListViewModel {
     }
     
     func getBackdropPoster(fromMovie atIndexpath: IndexPath) -> String {
-        return unwrapValue(value: getPosterUrl(poster_path: getMovie(from: atIndexpath).backdropPath))
+        return unwrapValue(value: getPosterUrl(posterPath: getMovie(from: atIndexpath).backdropPath))
     }
     
     func getOverview(fromMovie atIndexpath: IndexPath) -> String {

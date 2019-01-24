@@ -7,17 +7,15 @@
 //
 
 struct Result: Decodable {
-    
-    let results       :  [Movie]!
-    let page          :  Int
-    let totalResults  :  Int
-    let dates         :  Dates
-    let totalPages    :  Int
-    
+    let results: [Movie]!
+    let page: Int
+    let totalResults: Int
+    let dates: Dates
+    let totalPages: Int
 }
 
 extension Result {
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case results, page, dates
         case totalPages = "total_pages"
         case totalResults = "total_results"

@@ -9,7 +9,7 @@
 struct Dates: Decodable {
     let maximum: String?
     let minimum: String?
-    
+
     init(maximum: String, minimum: String) {
         self.maximum = maximum
         self.minimum = minimum
@@ -17,8 +17,7 @@ struct Dates: Decodable {
 }
 
 extension Dates {
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case maximum, minimum
     }
 }
-

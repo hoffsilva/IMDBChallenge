@@ -6,14 +6,11 @@
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
+import FCAlertView
 import Foundation
 import UIKit
-import FCAlertView
-
-
 
 class LanguageTableView: UITableViewController {
-    
     var selectedLanguage = IndexPath()
     
     var languageViewModel = LanguageViewModel()
@@ -39,7 +36,9 @@ class LanguageTableView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "languageCell", for: indexPath) as! LanguageTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "languageCell", for: indexPath) as? LanguageTableViewCell else {
+            return UITableViewCell()
+        }
         cell.languageLabel.text = languageViewModel.getTranslationName(by: indexPath).uppercased() + " - " + languageViewModel.getTranslationCountry(by: indexPath)
         if languageViewModel.isSelectedLanguage(by: indexPath) {
             cell.accessoryType = .checkmark
@@ -56,11 +55,9 @@ class LanguageTableView: UITableViewController {
         alertView.makeAlertTypeCaution()
         alertView.showAlert(withTitle: "Change Language", withSubtitle: "Would You like to alter the app's language?", withCustomImage: nil, withDoneButtonTitle: nil, andButtons: ["YES", "NO"])
     }
-    
 }
 
 extension LanguageTableView: FCAlertViewDelegate {
-    
     func fcAlertView(_ alertView: FCAlertView!, clickedButtonIndex index: Int, buttonTitle title: String!) {
         if title == "YES" {
             languageViewModel.setDefaulTranslation(by: selectedLanguage)
@@ -69,11 +66,9 @@ extension LanguageTableView: FCAlertViewDelegate {
             alertView.dismiss()
         }
     }
-    
 }
 
 extension LanguageTableView: LangaugeViewModelDelegate {
-    
     func didNotLoadLanguages(message: String) {
         clearAllNotice()
         noticeOnlyText(message)
@@ -96,5 +91,4 @@ extension LanguageTableView: LangaugeViewModelDelegate {
         tableView.isHidden = false
         clearAllNotice()
     }
-    
 }

@@ -6,18 +6,13 @@
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-import Foundation
-import Unbox
-
 struct ErrorResponse: Decodable {
-    
-    let statusCode   : Int
+    let statusCode: Int
     let statusMessage: String
-    
 }
 
 extension ErrorResponse {
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case statusCode = "status_code"
         case statusMessage = "status_message"
     }

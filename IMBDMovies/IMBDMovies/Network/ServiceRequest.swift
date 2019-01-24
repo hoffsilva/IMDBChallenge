@@ -6,23 +6,20 @@
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-import Foundation
 import Alamofire
-import Unbox
 import FCAlertView
+import Foundation
+import Unbox
 
-typealias obj = (Data?) -> Swift.Void
+typealias object = (Data?) -> Swift.Void
 
 struct ServiceRequest {
-    
     fileprivate static var isConnected = true
     
-
-    
-    static func fetchData(endPointURL: String, responseJSON: @escaping obj) {
+    static func fetchData(endPointURL: String, responseJSON: @escaping object) {
         if isConnected {
-            Alamofire.request(endPointURL.trimmingCharacters(in: .whitespaces)).responseJSON { (response) in
-                if let pt = response.data{
+            Alamofire.request(endPointURL.trimmingCharacters(in: .whitespaces)).responseJSON { response in
+                if let pt = response.data {
                     responseJSON(pt)
                     return
                 }
@@ -33,7 +30,7 @@ struct ServiceRequest {
         }
     }
     
-    static func verifyConnection(){
+    static func verifyConnection() {
         guard let reachabilityNetwork = Alamofire.NetworkReachabilityManager(host: "www.google.com") else {
             return
         }
@@ -54,5 +51,4 @@ struct ServiceRequest {
             }
         }
     }
-    
 }

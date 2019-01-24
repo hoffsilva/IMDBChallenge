@@ -6,25 +6,21 @@
 //  Copyright © 2018 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-import Foundation
-
 struct MovieTrailer: Decodable {
-    
-    let id             : String
-    let languageCode   : String
-    let countryCode    : String
-    let key            : String
-    let name           : String
-    let site           : String
-    let size           : Int
-    let type           : String
-    
+    let id: String
+    let languageCode: String
+    let countryCode: String
+    let key: String
+    let name: String
+    let site: String
+    let size: Int
+    let type: String
 }
 
 extension MovieTrailer {
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id, key, name, site, size, type
         case languageCode = "iso_639_1"
-        case countryCode  = "iso_3166_1"
+        case countryCode = "iso_3166_1"
     }
 }
