@@ -20,29 +20,29 @@ class GenreListViewModel {
     var genresList = [Genre]()
     
     func loadGenresList() {
-        ServiceRequest.fetchData(endPointURL: Memento.genresListURL()) { result in
-            guard let unwrappedResult = result else {
-                return
-            }
-            
-            do {
-                let error: ErrorResponse = try JSONDecoder().decode(ErrorResponse.self, from: unwrappedResult)
-                self.genresListViewModelDelegate.didNotLoadGenreList(message: error.statusMessage)
-                return
-            } catch {}
-            
-            do {
-                let genresList: GenresList = try JSONDecoder().decode(GenresList.self, from: unwrappedResult)
-                guard let unwrappedGenresList = genresList.genres else {
-                    return
-                }
-                self.genresList = unwrappedGenresList
-                self.genresListViewModelDelegate.didLoadGenresList()
-            } catch {
-                self.genresListViewModelDelegate.didNotLoadGenreList(message: error.localizedDescription)
-                print(error)
-            }
-        }
+//        VerifyConnection.fetchData(endPointURL: Memento.genresListURL()) { result in
+//            guard let unwrappedResult = result else {
+//                return
+//            }
+//            
+//            do {
+//                let error: ErrorResponse = try JSONDecoder().decode(ErrorResponse.self, from: unwrappedResult)
+//                self.genresListViewModelDelegate.didNotLoadGenreList(message: error.statusMessage)
+//                return
+//            } catch {}
+//            
+//            do {
+//                let genresList: GenresList = try JSONDecoder().decode(GenresList.self, from: unwrappedResult)
+//                guard let unwrappedGenresList = genresList.genres else {
+//                    return
+//                }
+//                self.genresList = unwrappedGenresList
+//                self.genresListViewModelDelegate.didLoadGenresList()
+//            } catch {
+//                self.genresListViewModelDelegate.didNotLoadGenreList(message: error.localizedDescription)
+//                print(error)
+//            }
+//        }
     }
     
     func getGenresListString(from genresListID: [Int]) -> String {

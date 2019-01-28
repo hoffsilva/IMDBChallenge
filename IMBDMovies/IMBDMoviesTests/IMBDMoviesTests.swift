@@ -28,7 +28,7 @@ class IMBDMoviesTests: XCTestCase {
     func testPerformanceGetUpcomingMovies() {
         self.measure {
             exp = expectation(description: "Upcoming movies fetch")
-            ServiceRequest.fetchData(endPointURL: ConstantsUtil.upcomingMoviesURL(), responseJSON: { (result) in
+            VerifyConnection.fetchData(endPointURL: ConstantsUtil.upcomingMoviesURL(), responseJSON: { (result) in
                 self.exp.fulfill()
             })
             self.wait()
@@ -37,7 +37,7 @@ class IMBDMoviesTests: XCTestCase {
     
     func testGetUpcomingMovies() {
         exp = expectation(description: "Get upcoming movies")
-        ServiceRequest.fetchData(endPointURL: ConstantsUtil.upcomingMoviesURL()) { (result) in
+        VerifyConnection.fetchData(endPointURL: ConstantsUtil.upcomingMoviesURL()) { (result) in
             XCTAssertTrue(result is UnboxableDictionary)
             self.exp.fulfill()
         }
@@ -48,7 +48,7 @@ class IMBDMoviesTests: XCTestCase {
     func testGetSearchMovie() {
         ConstantsUtil.setQueryValue(value: "avengers")
         exp = expectation(description: "Search movie by parameter")
-        ServiceRequest.fetchData(endPointURL: ConstantsUtil.searchMoviesURL()) { (result) in
+        VerifyConnection.fetchData(endPointURL: ConstantsUtil.searchMoviesURL()) { (result) in
             XCTAssertTrue(result is UnboxableDictionary)
             self.exp.fulfill()
         }
@@ -61,7 +61,7 @@ class IMBDMoviesTests: XCTestCase {
     
     func testGetPrimaryTranslations() {
         exp = expectation(description: "Primary Translations")
-        ServiceRequest.fetchData(endPointURL: ConstantsUtil.primaryTranslationsURL()) { (result) in
+        VerifyConnection.fetchData(endPointURL: ConstantsUtil.primaryTranslationsURL()) { (result) in
             XCTAssertTrue(result is Array<String>)
             self.exp.fulfill()
         }
@@ -70,7 +70,7 @@ class IMBDMoviesTests: XCTestCase {
     
     func testGetCountries() {
         exp = expectation(description: "Countries")
-        ServiceRequest.fetchData(endPointURL: ConstantsUtil.countriesURL()) { (result) in
+        VerifyConnection.fetchData(endPointURL: ConstantsUtil.countriesURL()) { (result) in
             XCTAssertTrue(result is Array<UnboxableDictionary>)
             self.exp.fulfill()
         }
@@ -79,7 +79,7 @@ class IMBDMoviesTests: XCTestCase {
     
     func testGetLanguages() {
         exp = expectation(description: "Languages")
-        ServiceRequest.fetchData(endPointURL: ConstantsUtil.languagesURL()) { (result) in
+        VerifyConnection.fetchData(endPointURL: ConstantsUtil.languagesURL()) { (result) in
             XCTAssertTrue(result is Array<UnboxableDictionary>)
             self.exp.fulfill()
         }

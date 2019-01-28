@@ -25,6 +25,7 @@ class UpcomingMoviesListTableView: UITableViewController {
         genresListViewModel.genresListViewModelDelegate = self
         genresListViewModel.loadGenresList()
         upcomingMoviesListViewModel.getUpcomingMovies()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

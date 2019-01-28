@@ -10,7 +10,7 @@
 		0B4CF3EB21B6E7FF00129988 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4CF3EA21B6E7FF00129988 /* Genre.swift */; };
 		0B4CF3ED21B6E90400129988 /* GenresList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4CF3EC21B6E90400129988 /* GenresList.swift */; };
 		0B4CF3EF21B6EA2700129988 /* GenresListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4CF3EE21B6EA2700129988 /* GenresListViewModel.swift */; };
-		0B4E5F4121B231FA00A9850E /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4E5F4021B231FA00A9850E /* ServiceRequest.swift */; };
+		0B4E5F4121B231FA00A9850E /* VerifyConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4E5F4021B231FA00A9850E /* VerifyConnection.swift */; };
 		0BA19EB821B1772C00A1A4D1 /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA19EB721B1772C00A1A4D1 /* Dates.swift */; };
 		0BA1CB4621B15DC200D14013 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1CB4521B15DC200D14013 /* AppDelegate.swift */; };
 		0BA1CB4B21B15DC200D14013 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB4921B15DC200D14013 /* Main.storyboard */; };
@@ -47,6 +47,8 @@
 		C32A558921E542790018EB68 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A558821E542790018EB68 /* Parameters.swift */; };
 		C32A558B21E542900018EB68 /* EndpointsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A558A21E542900018EB68 /* EndpointsEnum.swift */; };
 		C32A558D21E542A10018EB68 /* UrlsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A558C21E542A10018EB68 /* UrlsEnum.swift */; };
+		C36A5B5A21FF3C400002F81F /* PerformRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A5B5921FF3C400002F81F /* PerformRequest.swift */; };
+		C36A5B5C21FF50880002F81F /* JSONDecoder+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A5B5B21FF50880002F81F /* JSONDecoder+Request.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +72,7 @@
 		0B4CF3EA21B6E7FF00129988 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		0B4CF3EC21B6E90400129988 /* GenresList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresList.swift; sourceTree = "<group>"; };
 		0B4CF3EE21B6EA2700129988 /* GenresListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresListViewModel.swift; sourceTree = "<group>"; };
-		0B4E5F4021B231FA00A9850E /* ServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
+		0B4E5F4021B231FA00A9850E /* VerifyConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyConnection.swift; sourceTree = "<group>"; };
 		0BA19EB721B1772C00A1A4D1 /* Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dates.swift; sourceTree = "<group>"; };
 		0BA1CB4221B15DC200D14013 /* IMBDMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMBDMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BA1CB4521B15DC200D14013 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,8 @@
 		C32A558821E542790018EB68 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
 		C32A558A21E542900018EB68 /* EndpointsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointsEnum.swift; sourceTree = "<group>"; };
 		C32A558C21E542A10018EB68 /* UrlsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlsEnum.swift; sourceTree = "<group>"; };
+		C36A5B5921FF3C400002F81F /* PerformRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformRequest.swift; sourceTree = "<group>"; };
+		C36A5B5B21FF50880002F81F /* JSONDecoder+Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Request.swift"; sourceTree = "<group>"; };
 		E7F771A7D424888F8F3BF600 /* Pods-IMBDMoviesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMBDMoviesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IMBDMoviesTests/Pods-IMBDMoviesTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,7 +156,9 @@
 		0B4E5F3F21B231DD00A9850E /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				0B4E5F4021B231FA00A9850E /* ServiceRequest.swift */,
+				0B4E5F4021B231FA00A9850E /* VerifyConnection.swift */,
+				C36A5B5921FF3C400002F81F /* PerformRequest.swift */,
+				C36A5B5B21FF50880002F81F /* JSONDecoder+Request.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -517,7 +523,7 @@
 				0BD6EE4121B46DC60078E178 /* ResultsMovieTrailer.swift in Sources */,
 				0BD6EE0721B2D4ED0078E178 /* UpcomingMoviesListTableView.swift in Sources */,
 				C32A558B21E542900018EB68 /* EndpointsEnum.swift in Sources */,
-				0B4E5F4121B231FA00A9850E /* ServiceRequest.swift in Sources */,
+				0B4E5F4121B231FA00A9850E /* VerifyConnection.swift in Sources */,
 				0BD6EE1F21B445690078E178 /* LanguageTableViewCell.swift in Sources */,
 				0BD6EE0421B23D9E0078E178 /* UpcomingMoviesListViewModel.swift in Sources */,
 				0BA19EB821B1772C00A1A4D1 /* Dates.swift in Sources */,
@@ -526,11 +532,13 @@
 				0BD6EE4721B47FA20078E178 /* MovieTrailerCollectionViewCell.swift in Sources */,
 				0B4CF3ED21B6E90400129988 /* GenresList.swift in Sources */,
 				0BD6EE0F21B36CC60078E178 /* LanguageViewModel.swift in Sources */,
+				C36A5B5C21FF50880002F81F /* JSONDecoder+Request.swift in Sources */,
 				0BA1CB4621B15DC200D14013 /* AppDelegate.swift in Sources */,
 				0BD6EE3F21B46C870078E178 /* MovieTrailer.swift in Sources */,
 				0BD6EE1B21B40FC90078E178 /* Translation.swift in Sources */,
 				0BD6EE0D21B33FDD0078E178 /* SwiftNotice.swift in Sources */,
 				C32A558321E512E90018EB68 /* Memento.swift in Sources */,
+				C36A5B5A21FF3C400002F81F /* PerformRequest.swift in Sources */,
 				0BBFEB2A21B59272009F552C /* ErrorResponse.swift in Sources */,
 				0B4CF3EF21B6EA2700129988 /* GenresListViewModel.swift in Sources */,
 				0BD6EE4521B478B00078E178 /* MovieTrailersCollectionView.swift in Sources */,

@@ -17,7 +17,11 @@ protocol UpcomingMoviesListViewModelDelegate {
 class UpcomingMoviesListViewModel {
     var upcomingMoviesListViewModelDelegate: UpcomingMoviesListViewModelDelegate?
     
-    var moviesList = [Movie]()
+    var moviesList = [Movie]() {
+        didSet {
+            upcomingMoviesListViewModelDelegate?.didLoadMoviesList()
+        }
+    }
     
     var tempMoviesList = [Movie]()
     
@@ -26,7 +30,18 @@ class UpcomingMoviesListViewModel {
     }
     
     func getUpcomingMovies() {
-        fetchDataFromTMDB(by: Memento.upcomingMoviesURL())
+        PerformRequest.upcomingMovies { [weak self] movies in
+            guard let cp = Int(UserDefaultManager.get(valueFrom: UserDefaults.Keys.currentPageNumberValue)) else {
+                return
+            }
+            
+            if cp == 1 {
+                self?.moviesList.removeAll()
+            }
+            
+            self?.moviesList.append(contentsOf: movies)
+            
+        }
         UserDefaultManager.set(value: "*", key: UserDefaults.Keys.languageChanged)
     }
     
@@ -43,7 +58,9 @@ class UpcomingMoviesListViewModel {
             upcomingMoviesListViewModelDelegate?.didLoadMoviesList()
         } else {
             formatSearchParam(value: searchParameter)
-            fetchDataFromTMDB(by: Memento.searchMoviesURL())
+            PerformRequest.searchUpcomingMoview { [weak self] movies in
+                self?.moviesList = movies
+            }
         }
     }
     
@@ -52,39 +69,6 @@ class UpcomingMoviesListViewModel {
         UserDefaultManager.set(value: formattedValue, key: UserDefaults.Keys.queryValue)
     }
     
-    private func fetchDataFromTMDB(by url: String) {
-        ServiceRequest.fetchData(endPointURL: url) { result in
-            
-            guard let movieData = result else {
-                self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: "The movie database is not available.")
-                return
-            }
-            
-            do {
-                let results = try JSONDecoder().decode(Result.self, from: movieData)
-                
-                UserDefaultManager.set(value: String(results.page), key: UserDefaults.Keys.currentPageNumberValue)
-                UserDefaultManager.set(value: String(results.totalPages), key: UserDefaults.Keys.lastPageNumberValue)
-                
-                guard let cp = Int(UserDefaultManager.get(valueFrom: UserDefaults.Keys.currentPageNumberValue)) else {
-                    return
-                }
-                
-                if cp == 1 {
-                    self.moviesList.removeAll()
-                }
-                for movie in results.results {
-                    self.moviesList.append(movie)
-                }
-                
-                self.upcomingMoviesListViewModelDelegate?.didLoadMoviesList()
-                
-            } catch {
-                print(error)
-                self.upcomingMoviesListViewModelDelegate?.didNotLoadMoviesList(message: error.localizedDescription)
-            }
-        }
-    }
     
     private func getMovie(from indexPath: IndexPath) -> Movie {
         return moviesList[indexPath.row]

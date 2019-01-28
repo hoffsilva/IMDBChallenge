@@ -9,26 +9,12 @@
 import Alamofire
 import FCAlertView
 import Foundation
-import Unbox
 
 typealias object = (Data?) -> Swift.Void
 
-struct ServiceRequest {
-    fileprivate static var isConnected = true
+struct VerifyConnection {
     
-    static func fetchData(endPointURL: String, responseJSON: @escaping object) {
-        if isConnected {
-            Alamofire.request(endPointURL.trimmingCharacters(in: .whitespaces)).responseJSON { response in
-                if let pt = response.data {
-                    responseJSON(pt)
-                    return
-                }
-            }
-        } else {
-            responseJSON(nil)
-            return
-        }
-    }
+    static var isConnected = true
     
     static func verifyConnection() {
         guard let reachabilityNetwork = Alamofire.NetworkReachabilityManager(host: "www.google.com") else {
